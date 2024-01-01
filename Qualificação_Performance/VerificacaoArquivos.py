@@ -21,10 +21,9 @@ def VerificarArquivos():
 
                 while True:
                     print(f'Que tipo de arquivo é {arquivo}?\n')
-
                     tipoArquivo = int(input(
                         '[1] - Sala Exames/Técnica\n'
-                        '[2] - Sala Exames\n'
+                        '[2] - Sala Exame   \n'
                         '[3] - Sala Técnica\n'
                         '[4] - Sala Adicional\n'
                         '[5] - Tubo de Fluxo\n'
@@ -58,4 +57,3 @@ def VerificarArquivos():
                 listaLog.clear()
 
         return listaLog
-
