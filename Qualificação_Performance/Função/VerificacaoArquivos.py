@@ -1,10 +1,12 @@
 import os
 
-listaLog = []
-opcao = ['Sala Exames/Técnica','Sala Exames','Sala Técnica','Sala Adicional','Tubo de Fluxo']
-def VerificarArquivos():
-    arquivos = os.listdir("./Logs")
+def verificarArquivos():
+    listaLog = []
+    opcao = ['Sala Exames/Técnica', 'Sala Exames', 'Sala Técnica', 'Sala Adicional', 'Tubo de Fluxo']
 
+    logsDiretorio = os.path.abspath(os.path.join(os.path.dirname(__file__),"..","Logs"))
+
+    arquivos = os.listdir(logsDiretorio)
     #Verificando se há arquivos na pasta Logs
     if len(arquivos) < 1:
         print("Sem arquivos na pasta Logs\n")
@@ -57,3 +59,4 @@ def VerificarArquivos():
                 listaLog.clear()
 
         return listaLog
+

@@ -1,9 +1,14 @@
-import os
-from VerificacaoArquivos import VerificarArquivos
+from Qualificacao_Performance_Mecalor.Qualificação_Performance.Função.VerificacaoArquivos \
+    import verificarArquivos
+
 
 print('='*20)
 print("INICIANDO PROGRAMA")
 print('='*20)
+
+#Verificando os arquivos
+logs = verificarArquivos()
+
 
 #Definino caminho e seu tipo
 #Sendo caminho:
@@ -31,9 +36,10 @@ while True:
         print("Valor Incorreto\n")
         tipoCaminho = int(input("Digite qual tipo de caminho o programa fará: \n"
                                 "[1] - Padrão\n"
-                                "[2] - Personalizado"))
+                                "[2] - Personalizado\n"))
     if caminho == 1:
         print("O caminho será Completo\n")
+
     else:
         print("O caminho será Resumido\n")
 
@@ -48,10 +54,16 @@ while True:
     if(validacaoCaminho == 1):
         break
 
+
+
 #Caminho Completo Padrão
 if(caminho == 1 and tipoCaminho == 1):
     print("Caminho Completo Padrão\n")
-    pass
+
+
+
+
+
 #Caminho Completo Personalizado
 elif (caminho == 1 and tipoCaminho == 2):
     print("Caminho Completo Personalizado\n")
