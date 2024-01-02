@@ -1,4 +1,4 @@
-class TuboFluxo():
+class DadosTuboFluxo():
     def __init__(self, minTemp, maxTemp, setTemp, minVazao, maxVazao, setVazao):
         self.minTemp = minTemp
         self.maxTemp = maxTemp

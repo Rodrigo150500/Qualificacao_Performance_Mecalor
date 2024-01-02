@@ -40,4 +40,3 @@ def dadosSala():
 
     return dados
 
-print(dadosSala())

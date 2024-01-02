@@ -1,14 +1,12 @@
 from Qualificacao_Performance_Mecalor.Qualificação_Performance.Função.VerificacaoArquivos \
     import verificarArquivos
-
-
+from Qualificacao_Performance_Mecalor.Qualificação_Performance.Caminhos.CaminhoCompletoPadrao import caminhoCompletoPadrao
 print('='*20)
 print("INICIANDO PROGRAMA")
 print('='*20)
 
 #Verificando os arquivos
-logs = verificarArquivos()
-
+verificarArquivos()
 
 #Definino caminho e seu tipo
 #Sendo caminho:
@@ -59,9 +57,7 @@ while True:
 #Caminho Completo Padrão
 if(caminho == 1 and tipoCaminho == 1):
     print("Caminho Completo Padrão\n")
-
-
-
+    caminhoCompletoPadrao()
 
 
 #Caminho Completo Personalizado

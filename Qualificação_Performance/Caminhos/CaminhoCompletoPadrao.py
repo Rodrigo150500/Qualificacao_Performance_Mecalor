@@ -1,0 +1,39 @@
+from Qualificacao_Performance_Mecalor.Qualificação_Performance.Função.DadosPadrao import dadosPadrao
+from Qualificacao_Performance_Mecalor.Qualificação_Performance.Classes.DadosPadrao import DadosPadrao
+from Qualificacao_Performance_Mecalor.Qualificação_Performance.Função.DadosEquipamento import dadosEquipamento
+from Qualificacao_Performance_Mecalor.Qualificação_Performance.Classes.DadosEquipamento import DadosEquipamento
+from Qualificacao_Performance_Mecalor.Qualificação_Performance.Função.DadosSala import dadosSala
+from Qualificacao_Performance_Mecalor.Qualificação_Performance.Classes.DadosSala import DadosSala
+from Qualificacao_Performance_Mecalor.Qualificação_Performance.Função.DadosTuboFluxo import dadosTuboFluxo
+from Qualificacao_Performance_Mecalor.Qualificação_Performance.Classes.DadosTuboFluxo import DadosTuboFluxo
+from Qualificacao_Performance_Mecalor.Qualificação_Performance.Função.GraficoExames import graficoExames
+def caminhoCompletoPadrao():
+
+    print("Dados Padrão\n")
+    dadosPadraoCCP = dadosPadrao()
+    padrao = DadosPadrao(nome=dadosPadraoCCP[0], sigla=dadosPadraoCCP[1], cliente=dadosPadraoCCP[2],
+                         OS=dadosPadraoCCP[3], dataColeta=dadosPadraoCCP[4])
+
+    print("\nDados do Equipamento\n")
+    dadosEquipamentoCCP = dadosEquipamento()
+    equipamento = DadosEquipamento(nomeEquip=dadosEquipamentoCCP[0], nomeFab=dadosEquipamentoCCP[1],
+                                   nomeMod=dadosEquipamentoCCP[2])
+
+    print("\nDados da Sala de Exame\n")
+    dadosSalaExameCCP = dadosSala()
+    salaExame = DadosSala(minTemp=dadosSalaExameCCP[0], maxTemp=dadosSalaExameCCP[1], setTemp=dadosSalaExameCCP[2],
+                          minUmid=dadosSalaExameCCP[3], maxUmid=dadosSalaExameCCP[4], setUmid=dadosSalaExameCCP[5])
+
+    print("\nDados da Sala Técnica\n")
+    dadosSalaTecnicaCCP = dadosSala()
+    salaTecnica = DadosSala(minTemp=dadosSalaTecnicaCCP[0], maxTemp=dadosSalaTecnicaCCP[1],
+                            setTemp=dadosSalaTecnicaCCP[2], minUmid=dadosSalaTecnicaCCP[3],
+                            maxUmid=dadosSalaTecnicaCCP[4], setUmid=dadosSalaTecnicaCCP[4])
+
+    print("\nTubo de Fluxo\n")
+    dadosTuboFluxoCCP = dadosTuboFluxo()
+    tuboFluxo = DadosTuboFluxo(minTemp=dadosTuboFluxoCCP[0], maxTemp=dadosTuboFluxoCCP[1],
+                               setTemp=dadosTuboFluxoCCP[2], minVazao=dadosTuboFluxoCCP[3],
+                               maxVazao=dadosTuboFluxoCCP[4], setVazao=dadosTuboFluxoCCP[5])
+
+    graficoExames(minTemp=salaExame.minTemp,)
