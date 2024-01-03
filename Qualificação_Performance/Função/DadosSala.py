@@ -1,4 +1,4 @@
-def dadosSala():
+def dadosSala(sala):
     while True:
         dados = []
 
@@ -9,7 +9,10 @@ def dadosSala():
         maxUmid = int(input("Digite a umimdade máxima da sala: "))
         setpointUmid = int(input("Digite o setpont de umidade da sala: "))
 
-        print(f"\nTemperatura Mínima: {minTemp}\n"
+        print(f"\n======================\n"
+              f"Dados da Sala {'Exame' if sala else 'Técnica'}\n"
+              f"======================\n"
+              f"Temperatura Mínima: {minTemp}\n"
               f"Temperatura Máxima: {maxTemp}\n"
               f"Setpoint Temperatura: {setpointTemp}\n"
               f"Umidade Mínima: {minUmid}\n"

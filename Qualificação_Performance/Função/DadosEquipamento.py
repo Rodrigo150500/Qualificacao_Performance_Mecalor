@@ -6,7 +6,10 @@ def dadosEquipamento():
         fabricante = input("Digite o nome do fabricante: ").strip()
         modelo = input("Digite o nome do modelo: ").strip()
 
-        print(f"\nEquipamento: {equipamento}\n"
+        print(f"\n======================\n"
+              f"Dados do Equipamento\n"
+              f"======================\n"
+              f"Equipamento: {equipamento}\n"
               f"Fabricante: {fabricante}\n"
               f"Modelo: {modelo}\n")
 

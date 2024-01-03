@@ -7,7 +7,7 @@ from Qualificacao_Performance_Mecalor.Qualificação_Performance.Classes.DadosSa
 from Qualificacao_Performance_Mecalor.Qualificação_Performance.Função.DadosTuboFluxo import dadosTuboFluxo
 from Qualificacao_Performance_Mecalor.Qualificação_Performance.Classes.DadosTuboFluxo import DadosTuboFluxo
 from Qualificacao_Performance_Mecalor.Qualificação_Performance.Função.GraficoExames import graficoExames
-def caminhoCompletoPadrao():
+def caminhoCompletoPadrao(listaLog):
 
     print("Dados Padrão\n")
     dadosPadraoCCP = dadosPadrao()
@@ -20,12 +20,12 @@ def caminhoCompletoPadrao():
                                    nomeMod=dadosEquipamentoCCP[2])
 
     print("\nDados da Sala de Exame\n")
-    dadosSalaExameCCP = dadosSala()
+    dadosSalaExameCCP = dadosSala(True)
     salaExame = DadosSala(minTemp=dadosSalaExameCCP[0], maxTemp=dadosSalaExameCCP[1], setTemp=dadosSalaExameCCP[2],
                           minUmid=dadosSalaExameCCP[3], maxUmid=dadosSalaExameCCP[4], setUmid=dadosSalaExameCCP[5])
 
     print("\nDados da Sala Técnica\n")
-    dadosSalaTecnicaCCP = dadosSala()
+    dadosSalaTecnicaCCP = dadosSala(False)
     salaTecnica = DadosSala(minTemp=dadosSalaTecnicaCCP[0], maxTemp=dadosSalaTecnicaCCP[1],
                             setTemp=dadosSalaTecnicaCCP[2], minUmid=dadosSalaTecnicaCCP[3],
                             maxUmid=dadosSalaTecnicaCCP[4], setUmid=dadosSalaTecnicaCCP[4])
@@ -36,4 +36,7 @@ def caminhoCompletoPadrao():
                                setTemp=dadosTuboFluxoCCP[2], minVazao=dadosTuboFluxoCCP[3],
                                maxVazao=dadosTuboFluxoCCP[4], setVazao=dadosTuboFluxoCCP[5])
 
-    graficoExames(minTemp=salaExame.minTemp,)
+    #Gerando o grafico da sala de exames
+    graficoExames(minTemp=salaExame.minTemp, maxTemp=salaExame.maxTemp, setpointTemp=salaExame.setTemp,
+                  minUmid=salaExame.minUmid, maxUmid=salaExame.maxUmid, setpointUmid=salaExame.setUmid,
+                  listaLog=listaLog)

@@ -9,7 +9,10 @@ def dadosTuboFluxo():
         maxVazao = int(input("Digite a vazão máxima: "))
         setpointVazao = int(input("Digite o setpoint da vazão: "))
 
-        print(f"\nTemperatura Mínima: {minTemp}\n"
+        print(f"\n======================\n"
+              f"Dados Tubo de Fluxo\n"
+              f"======================\n"
+              f"Temperatura Mínima: {minTemp}\n"
               f"Temperatura Máxima: {maxTemp}\n"
               f"Setpoint Temperatura: {setpointTemp}\n"
               f"Vazão Mínima: {minVazao}\n"

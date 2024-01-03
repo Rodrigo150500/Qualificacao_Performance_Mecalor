@@ -7,7 +7,10 @@ def dadosPadrao():
         OS = input("Digite o nome da OS: ").strip()
         dataColeta = input("Digite a data da coleta dos Logs: ").strip()
 
-        print(f"\nNome: {nome}\n"
+        print(f"\n==============\n"
+              f"Dados da sala \n"
+              f"==============\n"
+              f"Nome: {nome}\n"
               f"Sigla: {sigla}\n"
               f"Cliente: {cliente}\n"
               f"OS: {OS}\n"

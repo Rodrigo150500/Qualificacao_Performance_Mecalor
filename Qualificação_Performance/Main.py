@@ -6,7 +6,7 @@ print("INICIANDO PROGRAMA")
 print('='*20)
 
 #Verificando os arquivos
-verificarArquivos()
+listaLog = verificarArquivos()
 
 #Definino caminho e seu tipo
 #Sendo caminho:
@@ -57,7 +57,7 @@ while True:
 #Caminho Completo Padrão
 if(caminho == 1 and tipoCaminho == 1):
     print("Caminho Completo Padrão\n")
-    caminhoCompletoPadrao()
+    caminhoCompletoPadrao(listaLog)
 
 
 #Caminho Completo Personalizado
