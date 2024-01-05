@@ -6,9 +6,9 @@ from Qualificacao_Performance_Mecalor.Qualificação_Performance.Função.DadosS
 from Qualificacao_Performance_Mecalor.Qualificação_Performance.Classes.DadosSala import DadosSala
 from Qualificacao_Performance_Mecalor.Qualificação_Performance.Função.DadosTuboFluxo import dadosTuboFluxo
 from Qualificacao_Performance_Mecalor.Qualificação_Performance.Classes.DadosTuboFluxo import DadosTuboFluxo
-from Qualificacao_Performance_Mecalor.Qualificação_Performance.Função.GraficoExames import graficoExames
+from Qualificacao_Performance_Mecalor.Qualificação_Performance.Função.GraficoSalas import graficoSalas
 def caminhoCompletoPadrao(listaLog):
-
+    """
     print("Dados Padrão\n")
     dadosPadraoCCP = dadosPadrao()
     padrao = DadosPadrao(nome=dadosPadraoCCP[0], sigla=dadosPadraoCCP[1], cliente=dadosPadraoCCP[2],
@@ -18,7 +18,7 @@ def caminhoCompletoPadrao(listaLog):
     dadosEquipamentoCCP = dadosEquipamento()
     equipamento = DadosEquipamento(nomeEquip=dadosEquipamentoCCP[0], nomeFab=dadosEquipamentoCCP[1],
                                    nomeMod=dadosEquipamentoCCP[2])
-
+    """
     print("\nDados da Sala de Exame\n")
     dadosSalaExameCCP = dadosSala(True)
     salaExame = DadosSala(minTemp=dadosSalaExameCCP[0], maxTemp=dadosSalaExameCCP[1], setTemp=dadosSalaExameCCP[2],
@@ -29,14 +29,12 @@ def caminhoCompletoPadrao(listaLog):
     salaTecnica = DadosSala(minTemp=dadosSalaTecnicaCCP[0], maxTemp=dadosSalaTecnicaCCP[1],
                             setTemp=dadosSalaTecnicaCCP[2], minUmid=dadosSalaTecnicaCCP[3],
                             maxUmid=dadosSalaTecnicaCCP[4], setUmid=dadosSalaTecnicaCCP[4])
-
+    """
     print("\nTubo de Fluxo\n")
     dadosTuboFluxoCCP = dadosTuboFluxo()
     tuboFluxo = DadosTuboFluxo(minTemp=dadosTuboFluxoCCP[0], maxTemp=dadosTuboFluxoCCP[1],
                                setTemp=dadosTuboFluxoCCP[2], minVazao=dadosTuboFluxoCCP[3],
                                maxVazao=dadosTuboFluxoCCP[4], setVazao=dadosTuboFluxoCCP[5])
-
+    """
     #Gerando o grafico da sala de exames
-    graficoExames(minTemp=salaExame.minTemp, maxTemp=salaExame.maxTemp, setpointTemp=salaExame.setTemp,
-                  minUmid=salaExame.minUmid, maxUmid=salaExame.maxUmid, setpointUmid=salaExame.setUmid,
-                  listaLog=listaLog)
+    graficoSalas(salaExames=salaExame, salaTecnica=salaTecnica, listaLog=listaLog)
