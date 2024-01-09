@@ -2,10 +2,10 @@ import os
 import pandas as pd
 
 
-def verificarLog(salaExames, salaTecnica, listaLog):
+def verificarLogSalas(salaExames, salaTecnica, listaLog):
     #Fazer uma condição para ler apenas o log de exames conforme foi selecionado
 
-    logDiretorio = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'Logs'))
+    logDiretorio = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..', 'Logs'))
     logs = os.listdir(logDiretorio)
 
 
@@ -15,7 +15,6 @@ def verificarLog(salaExames, salaTecnica, listaLog):
 
                 diretorio = os.path.join(logDiretorio,log)
                 gerarLog(salaExames, salaTecnica, diretorio)
-
 
 def gerarLog(salaExames, salaTecnica, log):
     dados = pd.read_csv(log, sep=',')
@@ -94,10 +93,11 @@ def gerarLog(salaExames, salaTecnica, log):
     dados["Temp Exame (°C)"] = dados["Temp Exame (°C)"]/10
     dados["Umid Exame (%)"] = dados["Umid Exame (%)"]/10
 
-    caminho = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'Resultado',"LogsAtualizados"))
+    #Definindo o caminho para salvar o novo Log atualizado
+    caminho = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..', 'Resultado', "LogsAtualizados"))
     nomeLog = os.path.join(caminho,"logSalas.txt")
 
     dados.to_csv(nomeLog, index=False, sep=';', encoding="cp1252")
 
-def gerarGrafico():
-    pass
+
+

@@ -3,7 +3,7 @@ import os
 listaLog = []
 opcao = ['Sala Exames/Técnica','Sala Exames','Sala Técnica','Sala Adicional','Tubo de Fluxo']
 def verificarArquivos():
-    logs_directory = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'Logs'))
+    logs_directory = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..', 'Logs'))
     arquivos = os.listdir(logs_directory)
 
     #Verificando se há arquivos na pasta Logs

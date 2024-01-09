@@ -1,4 +1,4 @@
-from Qualificacao_Performance_Mecalor.Qualificação_Performance.Função.VerificacaoArquivos \
+from Qualificacao_Performance_Mecalor.Qualificação_Performance.Função.Geral.VerificacaoArquivos \
     import verificarArquivos
 from Qualificacao_Performance_Mecalor.Qualificação_Performance.Caminhos.CaminhoCompletoPadrao import caminhoCompletoPadrao
 print('='*20)
