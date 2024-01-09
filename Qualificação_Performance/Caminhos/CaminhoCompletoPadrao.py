@@ -1,3 +1,5 @@
+import os
+
 from Qualificacao_Performance_Mecalor.Qualificação_Performance.Função.DadosPadrao import dadosPadrao
 from Qualificacao_Performance_Mecalor.Qualificação_Performance.Classes.DadosPadrao import DadosPadrao
 from Qualificacao_Performance_Mecalor.Qualificação_Performance.Função.DadosEquipamento import dadosEquipamento
@@ -6,7 +8,8 @@ from Qualificacao_Performance_Mecalor.Qualificação_Performance.Função.DadosS
 from Qualificacao_Performance_Mecalor.Qualificação_Performance.Classes.DadosSala import DadosSala
 from Qualificacao_Performance_Mecalor.Qualificação_Performance.Função.DadosTuboFluxo import dadosTuboFluxo
 from Qualificacao_Performance_Mecalor.Qualificação_Performance.Classes.DadosTuboFluxo import DadosTuboFluxo
-from Qualificacao_Performance_Mecalor.Qualificação_Performance.Função.GraficoSalas import graficoSalas
+from Qualificacao_Performance_Mecalor.Qualificação_Performance.Função.GerarGraficoSalas import verificarLog
+from Qualificacao_Performance_Mecalor.Qualificação_Performance.Função.LimparLogs import limparLogs
 def caminhoCompletoPadrao(listaLog):
     """
     print("Dados Padrão\n")
@@ -36,5 +39,10 @@ def caminhoCompletoPadrao(listaLog):
                                setTemp=dadosTuboFluxoCCP[2], minVazao=dadosTuboFluxoCCP[3],
                                maxVazao=dadosTuboFluxoCCP[4], setVazao=dadosTuboFluxoCCP[5])
     """
-    #Gerando o grafico da sala de exames
-    graficoSalas(salaExames=salaExame, salaTecnica=salaTecnica, listaLog=listaLog)
+
+    #Limpando os logs da pasta LogsAtuzalidos
+    limparLogs()
+
+    #Verificando, gerando o novo log com os novos dados e gerando o gráfico
+    verificarLog(salaExames=salaExame, salaTecnica=salaTecnica, listaLog=listaLog)
+

@@ -1,7 +1,8 @@
 import os
 import pandas as pd
 
-def graficoSalas(salaExames, salaTecnica, listaLog):
+
+def verificarLog(salaExames, salaTecnica, listaLog):
     #Fazer uma condição para ler apenas o log de exames conforme foi selecionado
 
     logDiretorio = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'Logs'))
@@ -11,11 +12,12 @@ def graficoSalas(salaExames, salaTecnica, listaLog):
     for opcao in listaLog:
         for log in logs:
             if(opcao[1] == log and opcao[0] == 1):
-                diretorio = os.path.join(logDiretorio,log)
-                gerarGrafico(salaExames, salaTecnica, diretorio)
 
-def gerarGrafico(salaExames, salaTecnica, log):
-    dir = "../Logs/Log_salas.txt"
+                diretorio = os.path.join(logDiretorio,log)
+                gerarLog(salaExames, salaTecnica, diretorio)
+
+
+def gerarLog(salaExames, salaTecnica, log):
     dados = pd.read_csv(log, sep=',')
 
     dataHoras = dados.Data.unique()
@@ -58,12 +60,44 @@ def gerarGrafico(salaExames, salaTecnica, log):
     dados["Umid Exame Max (%)"] = salaExames.maxUmid
 
     #Excluindo as colunas desnecessárias
-    dados.drop(["DewEquip1 (C/10)", 'TempEquip2 (C/10)', 'UmdEquip2 (UR/10)', 'DewEquip2 (C/10)', 'TempExame2 (C/10)',
-                'UmdExame2 (UR/10)', 'Unnamed: 12','DewExame1 (C/10)'], axis=1, inplace=True)
-    dados.to_csv("logs.csv", index=False, sep=';')
+    dados.drop(['DewEquip1 (C/10)',
+       'TempEquip2 (C/10)', 'UmdEquip2 (UR/10)', 'DewEquip2 (C/10)',
+       'DewExame1 (C/10)',
+       'TempExame2 (C/10)', 'UmdExame2 (UR/10)', 'Unnamed: 12',
+      ], axis=1, inplace=True)
+
 
     #Reorganizando as colunas
-    dados = dados[[]]
+    dados = dados[['Data','Data2','Hora',
+                                  
+                   'Temp Equip Min (°C)',
+                   'Temp Equip Max (°C)',
+                   'Temp Equip (°C)',
 
+                   'Umid Equip Min (%)',
+                   'Umid Equip Max (%)',
+                   'Umid Equip (%)',
 
+                   'Temp Exame Min (°C)',
+                   'Temp Exame Max (°C)',
+                   'Temp Exame (°C)',
 
+                   'Umid Exame Min (%)',
+                   'Umid Exame Max (%)',
+                   'Umid Exame (%)',
+]]
+
+    #Dividindo as colunas da leitura por 10
+    dados["Temp Equip (°C)"] = dados["Temp Equip (°C)"]/10
+    dados["Umid Equip (%)"] = dados["Umid Equip (%)"]/10
+
+    dados["Temp Exame (°C)"] = dados["Temp Exame (°C)"]/10
+    dados["Umid Exame (%)"] = dados["Umid Exame (%)"]/10
+
+    caminho = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'Resultado',"LogsAtualizados"))
+    nomeLog = os.path.join(caminho,"logSalas.txt")
+
+    dados.to_csv(nomeLog, index=False, sep=';', encoding="cp1252")
+
+def gerarGrafico():
+    pass
