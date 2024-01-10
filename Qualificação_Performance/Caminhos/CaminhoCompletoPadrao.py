@@ -6,9 +6,12 @@ from Qualificacao_Performance_Mecalor.Qualificação_Performance.Função.Dados.
 from Qualificacao_Performance_Mecalor.Qualificação_Performance.Classes.DadosSala import DadosSala
 from Qualificacao_Performance_Mecalor.Qualificação_Performance.Função.Dados.DadosTuboFluxo import dadosTuboFluxo
 from Qualificacao_Performance_Mecalor.Qualificação_Performance.Classes.DadosTuboFluxo import DadosTuboFluxo
-from Qualificacao_Performance_Mecalor.Qualificação_Performance.Função.GerarLogs.GerarLogSalas import verificarLogSalas
 from Qualificacao_Performance_Mecalor.Qualificação_Performance.Função.Geral.LimparLogs import limparLogs
-from Qualificacao_Performance_Mecalor.Qualificação_Performance.Função.GerarLogs.GerarLogTuboFluxo import verificarLogTuboFluxo
+from Qualificacao_Performance_Mecalor.Qualificação_Performance.Função.Geral.VerificarLogs import verificarLog
+from Qualificacao_Performance_Mecalor.Qualificação_Performance.Função.GerarLogs.GerarLogSalas import gerarLogSalas
+from Qualificacao_Performance_Mecalor.Qualificação_Performance.Função.GerarLogs.GerarLogTuboFluxo import \
+    gerarLogTuboFluxo
+
 def caminhoCompletoPadrao(listaLog):
 
     print("Dados Padrão\n")
@@ -42,9 +45,15 @@ def caminhoCompletoPadrao(listaLog):
     #Limpando os logs da pasta LogsAtuzalidos
     limparLogs()
 
-    #Verificando, gerando o novo log com os novos dados
-    verificarLogSalas(salaExames=salaExame, salaTecnica=salaTecnica, listaLog=listaLog)
+    #Verificando os logs das salas importados
+    diretorioSalas = verificarLog(listaLog=listaLog, n=1)
+    gerarLogSalas(salaExames=salaExame, salaTecnica=salaTecnica, log=diretorioSalas)
 
-    #Verificando e gerando o novo log do tubo de fluxo
-    verificarLogTuboFluxo(tuboFluxo=tuboFluxo, listaLog=listaLog)
+    #Verificando os logs do tubo de fluxo
+    diretorioTuboFluxo = verificarLog(listaLog=listaLog, n=5)
+    gerarLogTuboFluxo(tuboFluxo=tuboFluxo, log = diretorioTuboFluxo)
+
+
+
+
 

@@ -5,10 +5,8 @@ def verificarLog(n, listaLog):
     logDiretorio = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..', 'Logs'))
     logs = os.listdir(logDiretorio)
 
-
     for opcao in listaLog:
         for log in logs:
             if(opcao[1] == log and opcao[0] == n):
-
                 diretorio = os.path.join(logDiretorio,log)
                 return diretorio

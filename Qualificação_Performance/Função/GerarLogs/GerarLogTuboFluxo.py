@@ -1,17 +1,21 @@
 import os
+import pandas as pd
+from Qualificacao_Performance_Mecalor.Qualificação_Performance.Função.Logs.GerarColunaDataHora import gerarColunaDataHora
+from Qualificacao_Performance_Mecalor.Qualificação_Performance.Função.Logs.GerarColunaTuboFluxo import gerarColunaTuboFluxo
 
-def verificarLogTuboFluxo(tuboFluxo, listaLog):
-    #Fazer uma condição para ler apenas o log de exames conforme foi selecionado
-    logDiretorio = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..', 'Logs'))
-    logs = os.listdir(logDiretorio)
+def gerarLogTuboFluxo(tuboFluxo, log):
+    dados = pd.read_csv(log, sep=',')
 
+    #Gerando a coluna de data e hora
+    dados = gerarColunaDataHora(dados)
 
-    for opcao in listaLog:
-        for log in logs:
-            if(opcao[1] == log and opcao[0] == 5):
+    #Gerando a coluna do tubo de Fluxo
+    dados = gerarColunaTuboFluxo(dados=dados,tuboFluxo=tuboFluxo)
 
-                diretorio = os.path.join(logDiretorio,log)
-                gerarLog(tuboFluxo, diretorio)
+    #Excluindo as colunas desnecessárias
 
-def gerarLog(tuboFluxo, log):
-    pass
+    #Reorganizando as colunas
+
+    #Dividindo as colunas por 10
+
+    #Definindo o caminho para salvar o novo log atualizado
