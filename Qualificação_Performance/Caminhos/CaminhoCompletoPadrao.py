@@ -9,8 +9,13 @@ from Qualificacao_Performance_Mecalor.Qualificação_Performance.Classes.DadosTu
 from Qualificacao_Performance_Mecalor.Qualificação_Performance.Função.Geral.LimparLogs import limparLogs
 from Qualificacao_Performance_Mecalor.Qualificação_Performance.Função.Geral.VerificarLogs import verificarLog
 from Qualificacao_Performance_Mecalor.Qualificação_Performance.Função.GerarLogs.GerarLogSalas import gerarLogSalas
+from Qualificacao_Performance_Mecalor.Qualificação_Performance.Função.Geral.GerarNovaAbaLog import gerarNovaAbaLog
 from Qualificacao_Performance_Mecalor.Qualificação_Performance.Função.GerarLogs.GerarLogTuboFluxo import \
     gerarLogTuboFluxo
+
+
+
+
 
 def caminhoCompletoPadrao(listaLog):
 
@@ -47,13 +52,13 @@ def caminhoCompletoPadrao(listaLog):
 
     #Verificando os logs das salas importados
     diretorioSalas = verificarLog(listaLog=listaLog, n=1)
-    gerarLogSalas(salaExames=salaExame, salaTecnica=salaTecnica, log=diretorioSalas)
+    gerarLogSalas(salaExames=salaExame, salaTecnica=salaTecnica, diretorio=diretorioSalas[0], nome=diretorioSalas[1])
 
     #Verificando os logs do tubo de fluxo
     diretorioTuboFluxo = verificarLog(listaLog=listaLog, n=5)
-    gerarLogTuboFluxo(tuboFluxo=tuboFluxo, log = diretorioTuboFluxo)
+    gerarLogTuboFluxo(tuboFluxo=tuboFluxo, diretorio = diretorioTuboFluxo[0], nome=diretorioTuboFluxo[1])
 
-
-
+    #Importando os logs para a planilha QP
+    gerarNovaAbaLog([["SalaExameTecnica", diretorioSalas[1]],["TuboFluxo",diretorioTuboFluxo[1]]])
 
 
