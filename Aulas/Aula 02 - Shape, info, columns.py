@@ -1,6 +1,6 @@
 import pandas as pd
 
-url = "../aluguel.csv"
+url = "aluguel.csv"
 
 dados = pd.read_csv(url, sep=';')
 

@@ -3,13 +3,13 @@ import os
 listaLog = []
 opcao = ['Sala Exames/Técnica','Sala Exames','Sala Técnica','Sala Adicional','Tubo de Fluxo']
 def verificarArquivos():
-    logs_directory = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..', 'Logs'))
+    logs_directory = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../Logs'))
     arquivos = os.listdir(logs_directory)
 
-    #Verificando se há arquivos na pasta Logs
+    #Verificando se há arquivos na pasta GerarColunas
     if len(arquivos) < 1:
         print("Sem arquivos na pasta Logs\n")
-        return listaLog
+        return False
     else:
         while True:
             for arquivo in arquivos:
@@ -39,7 +39,7 @@ def verificarArquivos():
             #Apresentando as respostas do usuario
             print("Conferindo os arquivos!\n")
             for arquivo in listaLog:
-                print(f'{opcao[arquivo[0]-1]} {arquivo[1]}')
+                print(f'{opcao[arquivo[0]-1]} --> {arquivo[1]}')
             print("")
 
             validacao = int(input("Os arquivos estão corretos?\n"

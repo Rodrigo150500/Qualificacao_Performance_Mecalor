@@ -1,8 +1,15 @@
 import os
 
-def limparLogs():
+def limparResultados():
+
+    #Limpando os logs antigos
     caminho = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..', 'Resultado', 'LogsAtualizados'))
     arquivos = os.listdir(caminho)
-    for arquivo in arquivos:
-        caminho_arquivo = os.path.join(caminho, arquivo)
-        os.remove(caminho_arquivo)
+    if len(arquivos) != 0:
+        for arquivo in arquivos:
+            caminho_arquivo = os.path.join(caminho, arquivo)
+            os.remove(caminho_arquivo)
+
+    caminhoQP = os.path.join(caminho,'../../Resultado/Qualificacao.xlsx')
+    if os.path.exists(caminhoQP):
+        os.remove(os.path.join(caminho,'../../Resultado/Qualificacao.xlsx'))

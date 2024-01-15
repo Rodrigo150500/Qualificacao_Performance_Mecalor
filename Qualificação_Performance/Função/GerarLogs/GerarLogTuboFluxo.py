@@ -1,7 +1,7 @@
 import os
 import pandas as pd
-from Qualificacao_Performance_Mecalor.Qualificação_Performance.Função.Logs.GerarColunaDataHora import gerarColunaDataHora
-from Qualificacao_Performance_Mecalor.Qualificação_Performance.Função.Logs.GerarColunaTuboFluxo import gerarColunaTuboFluxo
+from Qualificacao_Performance_Mecalor.Qualificação_Performance.Função.GerarColunas.GerarColunaDataHora import gerarColunaDataHora
+from Qualificacao_Performance_Mecalor.Qualificação_Performance.Função.GerarColunas.GerarColunaTuboFluxo import gerarColunaTuboFluxo
 
 def gerarLogTuboFluxo(tuboFluxo, diretorio, nome):
     dados = pd.read_csv(diretorio, sep=',')

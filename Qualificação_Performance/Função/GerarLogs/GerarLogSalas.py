@@ -1,8 +1,8 @@
 import os
 import pandas as pd
-from Qualificacao_Performance_Mecalor.Qualificação_Performance.Função.Logs.GerarColunaDataHora import gerarColunaDataHora
-from Qualificacao_Performance_Mecalor.Qualificação_Performance.Função.Logs.GerarColunaSalaTecnica import gerarColunaSalaTecnica
-from Qualificacao_Performance_Mecalor.Qualificação_Performance.Função.Logs.GerarColunaSalaExame import gerarColunaSalaExame
+from Qualificacao_Performance_Mecalor.Qualificação_Performance.Função.GerarColunas.GerarColunaDataHora import gerarColunaDataHora
+from Qualificacao_Performance_Mecalor.Qualificação_Performance.Função.GerarColunas.GerarColunaSalaTecnica import gerarColunaSalaTecnica
+from Qualificacao_Performance_Mecalor.Qualificação_Performance.Função.GerarColunas.GerarColunaSalaExame import gerarColunaSalaExame
 
 def gerarLogSalas(salaExames, salaTecnica, diretorio, nome):
     dados = pd.read_csv(diretorio, sep=',')

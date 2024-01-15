@@ -1,8 +1,8 @@
 import os
 
 def verificarLog(n, listaLog):
-    #Fazer uma condição para ler apenas o log de exames conforme foi selecionado
-    logDiretorio = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..', 'Logs'))
+    #Fazer uma condição para ler apenas o log selecionado
+    logDiretorio = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../Logs'))
     logs = os.listdir(logDiretorio)
 
     for opcao in listaLog:
@@ -10,3 +10,5 @@ def verificarLog(n, listaLog):
             if(opcao[1] == log and opcao[0] == n):
                 diretorio = os.path.join(logDiretorio,log)
                 return [diretorio,log]
+
+

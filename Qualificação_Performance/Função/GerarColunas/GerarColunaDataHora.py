@@ -1,6 +1,5 @@
 
 def gerarColunaDataHora(dados):
-
     dataHoras = dados.Data.unique()
     listaData = []
     listaHora = []
@@ -19,8 +18,4 @@ def gerarColunaDataHora(dados):
         listaData.append(data)
         listaHora.append(horario)
 
-    # Criando as colunas de Data e Hora
-    dados["Data2"] = listaData
-    dados["Hora"] = listaHora
-
-    return dados
+    return [listaData,listaHora]
