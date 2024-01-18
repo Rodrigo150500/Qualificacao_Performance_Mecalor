@@ -32,14 +32,14 @@ def verificarArquivos():
                     if tipoArquivo <= 0 or tipoArquivo >= 6:
                         print("Valor incorret, digite novamente!!!\n")
                     else:
-                        temp = [tipoArquivo, arquivo]
+                        temp = [tipoArquivo, arquivo, opcao[tipoArquivo-1]]
                         listaLog.append(temp)
                         break
 
             #Apresentando as respostas do usuario
             print("Conferindo os arquivos!\n")
             for arquivo in listaLog:
-                print(f'{opcao[arquivo[0]-1]} --> {arquivo[1]}')
+                print(f' {arquivo[1]} --> {opcao[arquivo[0]-1]} ')
             print("")
 
             validacao = int(input("Os arquivos estão corretos?\n"

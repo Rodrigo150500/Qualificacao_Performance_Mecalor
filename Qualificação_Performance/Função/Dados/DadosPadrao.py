@@ -1,11 +1,11 @@
 def dadosPadrao():
     while True:
         dados = []
-        nome = input("Digite o nome do coordenador: ").strip()
-        sigla = input("Digite a sigla: ").strip()
-        cliente = input("Digite o nome do cliente: ").strip()
-        OS = input("Digite o nome da OS: ").strip()
-        dataColeta = input("Digite a data da coleta dos Logs: ").strip()
+        nome = input("Digite o nome do coordenador: ").upper()
+        sigla = input("Digite a sigla: ").upper()
+        cliente = input("Digite o nome do cliente: ").upper()
+        OS = input("Digite o nome da OS: ").upper()
+        dataColeta = input("Digite a data da coleta dos Logs: ").upper()
 
         print(f"\n==============\n"
               f"Dados da sala \n"

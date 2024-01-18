@@ -2,9 +2,9 @@ def dadosEquipamento():
     while True:
         dados = []
 
-        equipamento = input("Digite o nome do equipamento: ").strip()
-        fabricante = input("Digite o nome do fabricante: ").strip()
-        modelo = input("Digite o nome do modelo: ").strip()
+        equipamento = input("Digite o nome do equipamento: ").upper()
+        fabricante = input("Digite o nome do fabricante: ").upper()
+        modelo = input("Digite o nome do modelo: ").upper()
 
         print(f"\n======================\n"
               f"Dados do Equipamento\n"

@@ -17,9 +17,8 @@ def limparResultados():
     #Limpando as imagens dos logs novos
     caminhoFoto = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..', 'Resultado', 'FotosGrafico'))
     fotos = os.listdir(caminhoFoto)
-    if len(fotos) >= 1:
+    if len(fotos) > 0:
         for foto in fotos:
-            caminhoFoto = os.path.join(caminhoFoto,foto)
-            os.remove(caminhoFoto)
+            caminhoNovo = os.path.join(caminhoFoto,foto)
+            os.remove(caminhoNovo)
 
-limparResultados()

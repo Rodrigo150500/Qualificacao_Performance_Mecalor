@@ -8,9 +8,6 @@ from Qualificacao_Performance_Mecalor.Qualificação_Performance.Função.Dados.
 from Qualificacao_Performance_Mecalor.Qualificação_Performance.Classes.DadosTuboFluxo import DadosTuboFluxo
 from Qualificacao_Performance_Mecalor.Qualificação_Performance.Função.Geral.LimparLogs import limparResultados
 from Qualificacao_Performance_Mecalor.Qualificação_Performance.Função.Geral.VerificarLogs import verificarLog
-from Qualificacao_Performance_Mecalor.Qualificação_Performance.Função.GerarLogs.GerarLogSalas import gerarLogSalas
-from Qualificacao_Performance_Mecalor.Qualificação_Performance.Função.GerarLogs.GerarLogTuboFluxo import \
-    gerarLogTuboFluxo
 from Qualificacao_Performance_Mecalor.Qualificação_Performance.Função.Dataframe.GerarDataframeSalas import gerarDataframeSalas
 from Qualificacao_Performance_Mecalor.Qualificação_Performance.Função.Dataframe.GerarDataframeTuboFluxo import \
     gerarDataframeTuboFluxo
@@ -51,72 +48,157 @@ def caminhoCompletoPadrao(listaLog):
     print("CARREGANDO...")
     print("="*20)
 
+    print(''
+          '- Limpar os logs\n'
+          '- Limpar as os gráficos\n' 
+          '- Verificando os logs\n'
+          '- Criando a folha das salas\n'
+          '- Criando a folha do tubo de fluxo\n'
+          '- Importando os dados\n'
+          '- Gerando gráfico da Sala Técnica\n'
+          '- Gerando gráfico da Sala de Exames\n'
+          '- Gerando gráfico do Tubo de Fluxo\n')
     #Limpando os logs da pasta LogsAtuzalidos
     limparResultados()
+    print("="*10 +" 12% " +"="*10)
+
+    print(''
+          'OK Limpar os logs\n'
+          'OK Limpar as os gráficos\n'
+          '- Verificando os logs\n'
+          '- Criando a folha das salas\n'
+          '- Criando a folha do tubo de fluxo\n'
+          '- Importando os dados\n'
+          '- Gerando gráfico da Sala Técnica\n'
+          '- Gerando gráfico da Sala de Exames\n'
+          '- Gerando gráfico do Tubo de Fluxo\n')
 
     #Verificando os logs se condizem ao que foi selecionado, retorna:
     #0 - Diretorio
     #1 - Nome do log
-    diretorioSalas, nomeSalas = verificarLog(listaLog=listaLog, n=1)
-    nomeSalaExame = nomeSalas[0]
-    nomeSalaTecnica = nomeSalas[1]
-    diretorioTuboFluxo, nomeTuboFluxo = verificarLog(listaLog=listaLog, n=5)
+    diretorioSalas, nomeSalasArquivo, nomeSalas = verificarLog(listaLog=listaLog, n=1)
+    nomeSalaExame = nomeSalas.split("/")[0]
+    nomeSalaTecnica = nomeSalas.split("/")[1]
+    diretorioTuboFluxo, nomeTuboFluxoArquivo,nomeTuboFluxo = verificarLog(listaLog=listaLog, n=5)
+    print("="*10 +" 25% " +"="*10)
 
+    print(''
+          'OK Limpar os logs\n'
+          'OK Limpar as os gráficos\n'
+          'OK Verificando os logs\n'
+          '- Criando a folha das salas\n'
+          '- Criando a folha do tubo de fluxo\n'
+          '- Importando os dados\n'
+          '- Gerando gráfico da Sala Técnica\n'
+          '- Gerando gráfico da Sala de Exames\n'
+          '- Gerando gráfico do Tubo de Fluxo\n')
 
     #Criando uma aba para as salas de Exame e Técnica
     dataFrameSalas,colunaEquip, colunaExame = gerarDataframeSalas(salaTecnica=salaTecnica, salaExames=salaExame,
                                               diretorio=diretorioSalas,
-                                                nome=nomeSalas)
+                                                nome=nomeSalasArquivo)
+    print("="*10 +" 37% " +"="*10)
 
-
+    print(''
+          'OK Limpar os logs\n'
+          'OK Limpar as os gráficos\n'
+          'OK Verificando os logs\n'
+          'OK Criando a folha das salas\n'
+          '- Criando a folha do tubo de fluxo\n'
+          '- Importando os dados\n'
+          '- Gerando gráfico da Sala Técnica\n'
+          '- Gerando gráfico da Sala de Exames\n'
+          '- Gerando gráfico do Tubo de Fluxo\n')
     #Criando uma aba para o tubo de fluxo
     dataFrameTubo, colunaTuboFluxo = gerarDataframeTuboFluxo(tubofluxo=tuboFluxo, diretorio=diretorioTuboFluxo,
-                                            nome=nomeTuboFluxo)
+                                            nome=nomeTuboFluxoArquivo)
+    print("="*10 +" 49% " +"="*10)
 
+    print(''
+          'OK Limpar os logs\n'
+          'OK Limpar as os gráficos\n'
+          'OK Verificando os logs\n'
+          'OK Criando a folha das salas\n'
+          'OK Criando a folha do tubo de fluxo\n'
+          '- Importando os dados\n'
+          '- Gerando gráfico da Sala Técnica\n'
+          '- Gerando gráfico da Sala de Exames\n'
+          '- Gerando gráfico do Tubo de Fluxo\n')
 
 
     #Importando os dataframes no excel
-    importarDadosQP(dataFrameSalas,dataFrameTubo,nomeSalas,nomeTuboFluxo)
+    importarDadosQP(dataFrameSalas,dataFrameTubo,nomeSalasArquivo,nomeTuboFluxoArquivo)
 
     #Importando os dados padrão para preenchimento do excel
     importarDadosPadrao(padrao, equipamento, salaTecnica, salaExame, tuboFluxo)
+    print("="*10 +" 61% " +"="*10)
 
+    print(''
+          'OK Limpar os logs\n'
+          'OK Limpar as os gráficos\n'
+          'OK Verificando os logs\n'
+          'OK Criando a folha das salas\n'
+          'OK Criando a folha do tubo de fluxo\n'
+          'OK Importando os dados\n'
+          '- Gerando gráfico da Sala Técnica\n'
+          '- Gerando gráfico da Sala de Exames\n'
+          '- Gerando gráfico do Tubo de Fluxo\n')
     #Gerando gráfico da Sala Ténica
     gerarGrafico(dataFrames=dataFrameSalas,
                  colunas=colunaEquip,
                  nomeImg=nomeSalaTecnica,
-                 titulo="Sala Técnica",
+                 titulo=nomeSalaTecnica,
                  posicao="B11")
+    print("="*10 +" 73% " +"="*10)
+
+    print(''
+          'OK Limpar os logs\n'
+          'OK Limpar as os gráficos\n'
+          'OK Verificando os logs\n'
+          'OK Criando a folha das salas\n'
+          'OK Criando a folha do tubo de fluxo\n'
+          'OK Importando os dados\n'
+          'OK Gerando gráfico da Sala Técnica\n'
+          '- Gerando gráfico da Sala de Exames\n'
+          '- Gerando gráfico do Tubo de Fluxo\n')
 
     #Gerando gráfico da Sala de Exames
     gerarGrafico(dataFrames=dataFrameSalas,
                  colunas=colunaExame,
                  nomeImg=nomeSalaExame,
-                 titulo="Sala Exames",
+                 titulo=nomeSalaExame,
                  posicao="B36")
+    print("="*10 +" 85% " +"="*10)
+
+    print(''
+          'OK Limpar os logs\n'
+          'OK Limpar as os gráficos\n'
+          'OK Verificando os logs\n'
+          'OK Criando a folha das salas\n'
+          'OK Criando a folha do tubo de fluxo\n'
+          'OK Importando os dados\n'
+          'OK Gerando gráfico da Sala Técnica\n'
+          'OK Gerando gráfico da Sala de Exames\n'
+          '- Gerando gráfico do Tubo de Fluxo\n')
 
     #Gerando gráfico do Tubo de Fluxo
     gerarGrafico(dataFrames=dataFrameTubo,
                  colunas=colunaTuboFluxo,
                  nomeImg=nomeTuboFluxo,
-                 titulo="Tubo de Fluxo",
+                 titulo=nomeTuboFluxo,
                  posicao="B62")
-
-
-
+    print("="*10 +" 100% " +"="*10)
+    print(''
+          'OK Limpar os logs\n'
+          'OK Limpar as os gráficos\n'
+          'OK Verificando os logs\n'
+          'OK Criando a folha das salas\n'
+          'OK Criando a folha do tubo de fluxo\n'
+          'OK Importando os dados\n'
+          'OK Gerando gráfico da Sala Técnica\n'
+          'OK Gerando gráfico da Sala de Exames\n'
+          'OK Gerando gráfico do Tubo de Fluxo\n')
 
     #Incluindo dados no QP
     print("FINALIZADO!!!")
-
-
-
-    #Verificando os logs das salas importados
-    #gerarLogSalas(salaExames=salaExame, salaTecnica=salaTecnica, diretorio=diretorioSalas[0], nome=diretorioSalas[1])
-
-    #Verificando os logs do tubo de fluxo
-    #gerarLogTuboFluxo(tuboFluxo=tuboFluxo, diretorio = diretorioTuboFluxo[0], nome=diretorioTuboFluxo[1])
-
-    #Importando os logs para a planilha QP
-    #gerarNovaAbaLog([["SalaExameTecnica", diretorioSalas[1]],["TuboFluxo",diretorioTuboFluxo[1]]])
-
 
