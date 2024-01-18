@@ -1,7 +1,7 @@
 import os
 
 listaLog = []
-opcao = ['Sala Exames/Técnica','Sala Exames','Sala Técnica','Sala Adicional','Tubo de Fluxo']
+opcao = ['Sala Exames/Sala Técnica','Sala Exames','Sala Técnica','Sala Adicional','Tubo de Fluxo']
 def verificarArquivos():
     logs_directory = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../Logs'))
     arquivos = os.listdir(logs_directory)
@@ -23,7 +23,7 @@ def verificarArquivos():
                 while True:
                     print(f'Que tipo de arquivo é {arquivo}?\n')
                     tipoArquivo = int(input(
-                        '[1] - Sala Exames/Técnica\n'
+                        '[1] - Sala Exames/Sala Técnica\n'
                         '[2] - Sala Exame   \n'
                         '[3] - Sala Técnica\n'
                         '[4] - Sala Adicional\n'

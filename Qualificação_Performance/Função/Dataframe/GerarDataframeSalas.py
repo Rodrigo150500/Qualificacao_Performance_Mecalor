@@ -29,10 +29,19 @@ def gerarDataframeSalas(salaTecnica, salaExames, diretorio, nome):
         'Umd Exame (%)' : leituraUmidExame
     }
 
+    colunasEquip = []
+    colunasExame = []
+
+    for coluna in dadosSalas:
+        if "Equip" in coluna:
+            colunasEquip.append(coluna)
+        elif "Exame" in coluna:
+            colunasExame.append(coluna)
+
     dataframeSalas = pd.DataFrame(data=dadosSalas)
 
     salvarDir = os.path.abspath(os.path.join(os.path.dirname(__file__),'../../Resultado/LogsAtualizados',nome))
     dataframeSalas.to_csv(salvarDir,index=False, sep=',', encoding="cp1252")
 
-    return dataframeSalas
+    return dataframeSalas, colunasEquip, colunasExame
 

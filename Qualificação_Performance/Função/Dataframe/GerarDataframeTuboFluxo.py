@@ -22,9 +22,15 @@ def gerarDataframeTuboFluxo(tubofluxo, diretorio, nome):
         "Vazão Alim (l/min)": leituraVazao
     }
 
+    colunas = []
+
+    for coluna in dadosTubo:
+        if coluna != "Data" and coluna != "Hora":
+            colunas.append(coluna)
+
     dataFrameTubo = pd.DataFrame(data=dadosTubo)
 
     salvarDir = os.path.abspath(os.path.join(os.path.dirname(__file__),'../../Resultado/LogsAtualizados',nome))
     dataFrameTubo.to_csv(salvarDir,index=False, sep=',', encoding="cp1252")
-    return dataFrameTubo
 
+    return dataFrameTubo, colunas

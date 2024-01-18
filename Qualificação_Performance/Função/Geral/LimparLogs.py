@@ -13,3 +13,13 @@ def limparResultados():
     caminhoQP = os.path.join(caminho,'../../Resultado/Qualificacao.xlsx')
     if os.path.exists(caminhoQP):
         os.remove(os.path.join(caminho,'../../Resultado/Qualificacao.xlsx'))
+
+    #Limpando as imagens dos logs novos
+    caminhoFoto = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..', 'Resultado', 'FotosGrafico'))
+    fotos = os.listdir(caminhoFoto)
+    if len(fotos) >= 1:
+        for foto in fotos:
+            caminhoFoto = os.path.join(caminhoFoto,foto)
+            os.remove(caminhoFoto)
+
+limparResultados()

@@ -9,6 +9,6 @@ def verificarLog(n, listaLog):
         for log in logs:
             if(opcao[1] == log and opcao[0] == n):
                 diretorio = os.path.join(logDiretorio,log)
-                return [diretorio,log]
+                return diretorio,log
 
 

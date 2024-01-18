@@ -17,10 +17,9 @@ from Qualificacao_Performance_Mecalor.Qualificação_Performance.Função.Datafr
 from Qualificacao_Performance_Mecalor.Qualificação_Performance.Função.Grafico.ImportarDadosQP import importarDadosQP
 from Qualificacao_Performance_Mecalor.Qualificação_Performance.Função.Grafico.ImportarDadosPadrao import \
     importarDadosPadrao
-
+from Qualificacao_Performance_Mecalor.Qualificação_Performance.Função.Grafico.GerarGrafico import gerarGrafico
 
 def caminhoCompletoPadrao(listaLog):
-
     print("Dados Padrão\n")
     dadosPadraoCCP = dadosPadrao()
     padrao = DadosPadrao(nome=dadosPadraoCCP[0], sigla=dadosPadraoCCP[1], cliente=dadosPadraoCCP[2],
@@ -58,27 +57,54 @@ def caminhoCompletoPadrao(listaLog):
     #Verificando os logs se condizem ao que foi selecionado, retorna:
     #0 - Diretorio
     #1 - Nome do log
-    diretorioSalas = verificarLog(listaLog=listaLog, n=1)
-    diretorioTuboFluxo = verificarLog(listaLog=listaLog, n=5)
+    diretorioSalas, nomeSalas = verificarLog(listaLog=listaLog, n=1)
+    nomeSalaExame = nomeSalas[0]
+    nomeSalaTecnica = nomeSalas[1]
+    diretorioTuboFluxo, nomeTuboFluxo = verificarLog(listaLog=listaLog, n=5)
 
 
     #Criando uma aba para as salas de Exame e Técnica
-    dataFrameSalas = gerarDataframeSalas(salaTecnica=salaTecnica, salaExames=salaExame, diretorio=diretorioSalas[0],
-                                         nome=diretorioSalas[1])
+    dataFrameSalas,colunaEquip, colunaExame = gerarDataframeSalas(salaTecnica=salaTecnica, salaExames=salaExame,
+                                              diretorio=diretorioSalas,
+                                                nome=nomeSalas)
 
 
     #Criando uma aba para o tubo de fluxo
-    dataFrameTubo = gerarDataframeTuboFluxo(tubofluxo=tuboFluxo, diretorio=diretorioTuboFluxo[0],
-                                            nome=diretorioTuboFluxo[1])
+    dataFrameTubo, colunaTuboFluxo = gerarDataframeTuboFluxo(tubofluxo=tuboFluxo, diretorio=diretorioTuboFluxo,
+                                            nome=nomeTuboFluxo)
+
+
 
     #Importando os dataframes no excel
-    importarDadosQP(dataFrameSalas,dataFrameTubo,diretorioSalas[1],diretorioTuboFluxo[1])
+    importarDadosQP(dataFrameSalas,dataFrameTubo,nomeSalas,nomeTuboFluxo)
 
     #Importando os dados padrão para preenchimento do excel
     importarDadosPadrao(padrao, equipamento, salaTecnica, salaExame, tuboFluxo)
 
+    #Gerando gráfico da Sala Ténica
+    gerarGrafico(dataFrames=dataFrameSalas,
+                 colunas=colunaEquip,
+                 nomeImg=nomeSalaTecnica,
+                 titulo="Sala Técnica",
+                 posicao="B11")
 
-    #Gerando gráfico
+    #Gerando gráfico da Sala de Exames
+    gerarGrafico(dataFrames=dataFrameSalas,
+                 colunas=colunaExame,
+                 nomeImg=nomeSalaExame,
+                 titulo="Sala Exames",
+                 posicao="B36")
+
+    #Gerando gráfico do Tubo de Fluxo
+    gerarGrafico(dataFrames=dataFrameTubo,
+                 colunas=colunaTuboFluxo,
+                 nomeImg=nomeTuboFluxo,
+                 titulo="Tubo de Fluxo",
+                 posicao="B62")
+
+
+
+
     #Incluindo dados no QP
     print("FINALIZADO!!!")
 
