@@ -1,7 +1,7 @@
 import os
 import pandas as pd
 from Qualificacao_Performance_Mecalor.Qualificação_Performance.Função.GerarColunas.GerarColunaDataHora import gerarColunaDataHora
-def gerarDataframeSalas(salaTecnica, salaExames, diretorio, nome):
+def gerarDataframeSalas(salaTecnica, salaExames, diretorio, nome, datas):
     logSalas = pd.read_csv(diretorio,sep=',')
 
     listaDataHora = gerarColunaDataHora(logSalas)
@@ -39,7 +39,7 @@ def gerarDataframeSalas(salaTecnica, salaExames, diretorio, nome):
             colunasExame.append(coluna)
 
     dataframeSalas = pd.DataFrame(data=dadosSalas)
-
+    dataframeSalas = dataframeSalas[dataframeSalas["Data"].isin(datas)]
     salvarDir = os.path.abspath(os.path.join(os.path.dirname(__file__),'../../Resultado/LogsAtualizados',nome))
     dataframeSalas.to_csv(salvarDir,index=False, sep=',', encoding="cp1252")
 

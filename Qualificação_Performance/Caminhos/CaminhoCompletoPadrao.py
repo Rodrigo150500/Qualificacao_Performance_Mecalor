@@ -19,9 +19,16 @@ from Qualificacao_Performance_Mecalor.Qualificação_Performance.Função.Grafic
 def caminhoCompletoPadrao(listaLog):
 
     #Mostrando uma preview do grafico sem os limites
-    dataSalas = graficoPreviewCCP(1,listaLog)
-    dataTuboFluxo = graficoPreviewCCP(5,listaLog)
-    
+    while True:
+        dataSalas = graficoPreviewCCP(1,listaLog)
+        dataTuboFluxo = graficoPreviewCCP(5,listaLog)
+
+        resposta = int(input("Deseja ver novamente: \n"
+                             "[1] - Sim\n"
+                             "[2] - Não\n"))
+        if resposta == 2:
+            break
+
     continuar = int(input("Deseja continuar: \n"
                           "[1] - Sim\n"
                           "[2] - Não\n"))
@@ -56,7 +63,7 @@ def caminhoCompletoPadrao(listaLog):
                                 maxUmid=dadosSalaTecnicaCCP[4], setUmid=dadosSalaTecnicaCCP[4])
 
         print("\nTubo de Fluxo\n")
-        dadosTuboFluxoCCP = dadosTuboFluxo(listaLog)
+        dadosTuboFluxoCCP = dadosTuboFluxo()
         tuboFluxo = DadosTuboFluxo(minTemp=dadosTuboFluxoCCP[0], maxTemp=dadosTuboFluxoCCP[1],
                                    setTemp=dadosTuboFluxoCCP[2], minVazao=dadosTuboFluxoCCP[3],
                                    maxVazao=dadosTuboFluxoCCP[4], setVazao=dadosTuboFluxoCCP[5])
@@ -84,7 +91,7 @@ def caminhoCompletoPadrao(listaLog):
         #Criando uma aba para as salas de Exame e Técnica
         dataFrameSalas,colunaEquip, colunaExame = gerarDataframeSalas(salaTecnica=salaTecnica, salaExames=salaExame,
                                                   diretorio=diretorioSalas,
-                                                  nome=nomeSalasArquivo)
+                                                  nome=nomeSalasArquivo, datas=dataSalas)
 
         #Criando uma aba para o tubo de fluxo
         dataFrameTubo, colunaTuboFluxo = gerarDataframeTuboFluxo(tubofluxo=tuboFluxo, diretorio=diretorioTuboFluxo,
