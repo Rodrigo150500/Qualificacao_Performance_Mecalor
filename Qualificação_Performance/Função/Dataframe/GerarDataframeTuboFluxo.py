@@ -23,7 +23,6 @@ def gerarDataframeTuboFluxo(tubofluxo, diretorio, nome):
     }
 
     colunas = []
-
     for coluna in dadosTubo:
         if coluna != "Data" and coluna != "Hora":
             colunas.append(coluna)

@@ -1,8 +1,9 @@
 import os
 import openpyxl
-import matplotlib.pyplot as plt
+from openpyxl.drawing.image import Image
 
-def importarDadosPadrao(dadosPadrao, dadosEquipamento, salaTecnica, salaExame, tuboFluxo):
+
+def importarDados(dadosPadrao, dadosEquipamento, salaTecnica, salaExame, tuboFluxo, posicao, nome):
     caminho = os.path.abspath(os.path.join(os.path.dirname(__file__),'../../Resultado/Qualificacao.xlsx'))
     workbook = openpyxl.load_workbook(caminho)
 
@@ -49,6 +50,13 @@ def importarDadosPadrao(dadosPadrao, dadosEquipamento, salaTecnica, salaExame, t
     abaGrafico["D60"] = tuboFluxo.maxTemp
     abaGrafico["F60"] = tuboFluxo.maxVazao
     abaGrafico["I60"] = tuboFluxo.setVazao
+
+
+
+    for i in range (0,len(posicao),1):
+        caminhoImagem = os.path.abspath(os.path.join(os.path.dirname(__file__),"../../Resultado/FotosGrafico", nome[i]+".png"))
+        img = Image(caminhoImagem)
+        abaGrafico.add_image(img, posicao[i])
 
     workbook.save(caminho)
 

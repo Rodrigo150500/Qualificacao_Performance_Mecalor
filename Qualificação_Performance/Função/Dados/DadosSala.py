@@ -1,4 +1,5 @@
 def dadosSala(sala):
+
     while True:
         dados = []
 

@@ -2,7 +2,7 @@ import os
 import pandas as pd
 import shutil
 
-def importarDadosQP(dataFrameSalas, dataFrameTubo, nomeSalas, nomeTubo):
+def importarNovasAbas(dataFrameSalas, dataFrameTubo, nomeSalas, nomeTubo):
 
     #Diretorio original e diretorio para salvar
     caminhoExcel = os.path.abspath(os.path.join(os.path.dirname(__file__),'../../Backup/Qualificacao.xlsx'))

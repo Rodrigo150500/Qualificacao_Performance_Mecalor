@@ -1,9 +1,7 @@
 import os
 import matplotlib.pyplot as plt
-import openpyxl
-from openpyxl.drawing.image import Image
-def gerarGrafico(dataFrames, colunas, nomeImg,titulo,posicao):
-    caminho = os.path.abspath(os.path.join(os.path.dirname(__file__),'../../Resultado/Qualificacao.xlsx'))
+
+def gerarGrafico(dataFrames, colunas, nomeImg,titulo):
     nome = nomeImg.split(".")[0] + ".png"
     salvarImagem = os.path.abspath(os.path.join(os.path.dirname(__file__),"../../Resultado/FotosGrafico", nome))
 
@@ -30,16 +28,6 @@ def gerarGrafico(dataFrames, colunas, nomeImg,titulo,posicao):
     dfTubo.set_xlim(0)
 
     plt.savefig(salvarImagem, bbox_inches='tight')
-
-    workbook = openpyxl.load_workbook(caminho)
-
-    abaGrafico = workbook["Grafico"]
-
-
-    img = Image(salvarImagem)
-    abaGrafico.add_image(img,posicao)
-
-    workbook.save(caminho)
 
 
 

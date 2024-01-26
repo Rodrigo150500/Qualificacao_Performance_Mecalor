@@ -53,11 +53,10 @@ if listaLog != False:
         if(validacaoCaminho == 1):
             break
 
-
-
     #Caminho Completo Padrão
     if(caminho == 1 and tipoCaminho == 1):
         print("Caminho Completo Padrão\n")
+
         caminhoCompletoPadrao(listaLog)
 
     #Caminho Completo Personalizado
