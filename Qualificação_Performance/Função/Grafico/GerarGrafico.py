@@ -21,7 +21,9 @@ def gerarGrafico(dataFrames, colunas, nomeImg,titulo):
     dfTubo.set_xticks(amostra_rotulos.index)
     dfTubo.set_xticklabels(amostra_rotulos, rotation=45, ha='right')
 
+    #Deslocando a legenda para fora do gráfico
     dfTubo.legend(bbox_to_anchor=(1.01, 1), loc='upper left')
+
 
     intervalo_y = range(0, int(max(dataFrames[colunas].max()) + 5), 5)
     dfTubo.set_yticks(intervalo_y)

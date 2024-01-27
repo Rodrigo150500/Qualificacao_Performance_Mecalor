@@ -95,7 +95,7 @@ def caminhoCompletoPadrao(listaLog):
 
         #Criando uma aba para o tubo de fluxo
         dataFrameTubo, colunaTuboFluxo = gerarDataframeTuboFluxo(tubofluxo=tuboFluxo, diretorio=diretorioTuboFluxo,
-                                                nome=nomeTuboFluxoArquivo)
+                                                nome=nomeTuboFluxoArquivo, datas = dataTuboFluxo)
 
 
         #Importando os dataframes no excel em cada aba
@@ -121,7 +121,7 @@ def caminhoCompletoPadrao(listaLog):
                      titulo=nomeTuboFluxo)
 
         posicoes = ["B11", "B36", "B62"]
-        nomes = [nomeSalaTecnica,nomeSalaExame,nomeTuboFluxo]
+        nomes = [nomeSalaTecnica, nomeSalaExame, nomeTuboFluxo]
 
 
         #Implementando o grafico no excel

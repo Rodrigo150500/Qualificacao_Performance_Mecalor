@@ -14,6 +14,10 @@ listaLog = verificarArquivos()
 #Tipo Caminho
 #1 - Padrão - 2 Personalizado
 if listaLog != False:
+    print("Caminho Completo Padrão\n")
+
+    caminhoCompletoPadrao(listaLog)
+'''
     while True:
         #Definindo o caminho se é COMPLETO ou RESUMIDO
         caminho = int(input("Digite se o caminho que o programa fará:\n"
@@ -71,3 +75,4 @@ if listaLog != False:
     elif (caminho == 2 and tipoCaminho == 2):
         print("Caminho Resumido Personalizado\n")
         pass
+'''

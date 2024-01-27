@@ -7,7 +7,7 @@ from collections import OrderedDict
 def verificarDatas(listaDatas, sala):
 
     datas = []
-    print(f"Quais datas farão parte do QP da {sala}:\n")
+    print(f"\nQuais datas farão parte do QP da {sala}:\n")
     for data in listaDatas:
         while True:
             res = int(input(f"Deseja incluir a data: {data}\n"
@@ -80,6 +80,17 @@ def graficoPreviewCCP(n,listaLog):
                             colunaExame.append(coluna)
                         elif "Equip" in coluna:
                             colunaTecnica.append(coluna)
+
+                    #Mostrando as datas
+                    datas = ''
+                    print("="*40)
+                    print(f"Datas para a Sala Técnica/Exames")
+                    print("="*40)
+                    for data in listaDatas:
+                        datas += f"{data}, "
+                    print(datas)
+
+                    temp = input("Essas são as datas, pressione qualquer tecla para continuar")
 
 
                     gerarGrafico(dados, colunaTecnica, "Sala Técnica")

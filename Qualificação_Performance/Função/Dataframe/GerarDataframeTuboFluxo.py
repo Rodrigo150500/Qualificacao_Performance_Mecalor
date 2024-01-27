@@ -3,7 +3,7 @@ import pandas as pd
 from Qualificacao_Performance_Mecalor.Qualificação_Performance.Função.GerarColunas.GerarColunaDataHora import gerarColunaDataHora
 
 
-def gerarDataframeTuboFluxo(tubofluxo, diretorio, nome):
+def gerarDataframeTuboFluxo(tubofluxo, diretorio, nome, datas):
     logTubo = pd.read_csv(diretorio, sep=',')
 
     listaDataHora = gerarColunaDataHora(logTubo)
@@ -26,9 +26,8 @@ def gerarDataframeTuboFluxo(tubofluxo, diretorio, nome):
     for coluna in dadosTubo:
         if coluna != "Data" and coluna != "Hora":
             colunas.append(coluna)
-
     dataFrameTubo = pd.DataFrame(data=dadosTubo)
-
+    dataFrameTubo = dataFrameTubo[dataFrameTubo["Data"].isin(datas)].reset_index(drop=True)
     salvarDir = os.path.abspath(os.path.join(os.path.dirname(__file__),'../../Resultado/LogsAtualizados',nome))
     dataFrameTubo.to_csv(salvarDir,index=False, sep=',', encoding="cp1252")
 
