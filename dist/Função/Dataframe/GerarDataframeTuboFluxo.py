@@ -1,6 +1,16 @@
 import os
 import pandas as pd
 from Função.GerarColunas.GerarColunaDataHora import gerarColunaDataHora
+import sys
+
+def get_executable_path():
+    """Obter o caminho do executável atual."""
+    if getattr(sys, 'frozen', False):
+        # Estamos em um executável empacotado com PyInstaller
+        return os.path.dirname(sys.executable)
+    else:
+        # Estamos executando um script Python normal
+        return os.path.dirname(__file__)
 
 
 def gerarDataframeTuboFluxo(tubofluxo, diretorio, nome, datas):
@@ -29,8 +39,8 @@ def gerarDataframeTuboFluxo(tubofluxo, diretorio, nome, datas):
     dataFrameTubo = pd.DataFrame(data=dadosTubo)
     dataFrameTubo = dataFrameTubo[dataFrameTubo["Data"].isin(datas)].reset_index(drop=True)
 
-    salvarPath = os.path.abspath(os.path.join(os.path.dirname(__file__),'../../Resultado/LogsAtualizados',nome))
-    salvarDir = salvarPath.replace("\\","/")
+    salvarDir = os.path.normpath(os.path.join(get_executable_path(),"../../Resultado/LogsAtualizados",nome))
+
     dataFrameTubo.to_csv(salvarDir,index=False, sep=',', encoding="cp1252")
 
     return dataFrameTubo, colunas

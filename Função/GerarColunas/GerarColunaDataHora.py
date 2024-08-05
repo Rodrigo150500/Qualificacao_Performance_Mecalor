@@ -19,3 +19,4 @@ def gerarColunaDataHora(dados):
         listaHora.append(horario)
 
     return [listaData,listaHora]
+

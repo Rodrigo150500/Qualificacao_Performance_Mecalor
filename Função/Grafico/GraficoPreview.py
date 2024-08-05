@@ -49,14 +49,14 @@ def gerarGrafico(dados, colunas, titulo):
     plt.show()
 
 
-def graficoPreviewCCP(listaLog, numeroOpcao):
+def graficoPreview(listaLog, numeroOpcao):
 
     #Diretorio dos logs
-    logDiretorio = listaLog[0]["Diretorio"]
+    logDiretorio = listaLog[-1]["DiretorioLogRaiz"]
 
     #Pegando os arquivos do diretório
     logs = os.listdir(logDiretorio)
-
+    print(f"Grafico Preview {logDiretorio}")
     for item in listaLog:
         for log in logs:
             if(item["Log"] == log and item["Input"] == numeroOpcao):
@@ -113,16 +113,15 @@ def graficoPreviewCCP(listaLog, numeroOpcao):
 
 
                 #Condição para Sala Exames ou Sala Adicional
-                elif ((item["Opcao"] == "Sala Exames" and item["Input"] == numeroOpcao) or (item["Opcao"] == 'Sala Adicional'
-                        and item["Input"] == numeroOpcao)):
+                elif ((item["Opcao"] == "Sala Exames") or (item["Opcao"] == 'Sala Adicional')):
                     pass
 
                 #Condição para Sala Técnica
-                elif (item["Opcao"] == "Sala Técnica" and item["Input"] == numeroOpcao):
+                elif (item["Opcao"] == "Sala Técnica"):
                     pass
 
                 #Condição para Tubo de Fluxo
-                elif (item["Opcao"] == "Tubo de Fluxo" and item["Input"] == numeroOpcao):
+                elif (item["Opcao"] == "Tubo de Fluxo"):
                     logTubo = pd.read_csv(logArquivo,sep=',')
                     data, hora = gerarColunaDataHora(logTubo)
 
@@ -150,11 +149,5 @@ def graficoPreviewCCP(listaLog, numeroOpcao):
                     #Perguntando quais datas vão estar no gráfico final do tubo de fluxo
                     datas = verificarDatas(listaDatas, "Tubo de Fluxo")
                     return datas
-
-
-lista = [{'Input': 1, 'Log': 'Log_salas.txt', 'Opcao': 'Sala Exames/Sala Técnica', 'Diretorio': 'C:\\Users\\Rodrigo\\Desktop\\Qualificação_Performance\\Logs'}, {'Input': 5, 'Log': 'Log_tubo.txt', 'Opcao': 'Tubo de Fluxo', 'Diretorio': 'C:\\Users\\Rodrigo\\Desktop\\Qualificação_Performance\\Logs'}]
-
-print(graficoPreviewCCP(lista, 1))
-print(graficoPreviewCCP(lista, 5))
 
 

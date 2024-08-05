@@ -14,6 +14,9 @@ def get_executable_path():
 
 
 def gerarDataframeTuboFluxo(tubofluxo, diretorio, nome, datas):
+
+    print(f'Gerar Dataframe Tubo de Fluxo {get_executable_path()}')
+
     logTubo = pd.read_csv(diretorio, sep=',')
 
     listaDataHora = gerarColunaDataHora(logTubo)
@@ -39,7 +42,10 @@ def gerarDataframeTuboFluxo(tubofluxo, diretorio, nome, datas):
     dataFrameTubo = pd.DataFrame(data=dadosTubo)
     dataFrameTubo = dataFrameTubo[dataFrameTubo["Data"].isin(datas)].reset_index(drop=True)
 
-    salvarDir = os.path.join(get_executable_path(),'Resultado/LogsAtualizados',nome).replace("\\", "/")
+
+    salvarDir = os.path.normpath(os.path.join(get_executable_path(),"Resultado/LogsAtualizados",nome))
+
+    print(f'Gerar dataframe tubo de fluxo salvar dir {salvarDir}')
     dataFrameTubo.to_csv(salvarDir,index=False, sep=',', encoding="cp1252")
 
     return dataFrameTubo, colunas

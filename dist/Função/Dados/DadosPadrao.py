@@ -1,6 +1,5 @@
 def dadosPadrao():
     while True:
-        dados = []
         nome = input("Digite o nome do coordenador: ").upper()
         sigla = input("Digite a sigla: ").upper()
         cliente = input("Digite o nome do cliente: ").upper()
@@ -8,7 +7,7 @@ def dadosPadrao():
         dataColeta = input("Digite a data da coleta dos Logs: ").upper()
 
         print(f"\n==============\n"
-              f"Dados da sala \n"
+              f"Dados Gerais \n"
               f"==============\n"
               f"Nome: {nome}\n"
               f"Sigla: {sigla}\n"
@@ -29,11 +28,15 @@ def dadosPadrao():
 
         if validacao == 1:
             break
-    dados.append(nome)
-    dados.append(sigla)
-    dados.append(cliente)
-    dados.append(OS)
-    dados.append(dataColeta)
+
+    dados = {
+        "Nome":nome,
+        "Sigla": sigla,
+        "Cliente":cliente,
+        "OS": OS,
+        "DataColeta": dataColeta
+    }
+
 
     return dados
 

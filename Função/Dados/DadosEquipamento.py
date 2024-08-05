@@ -1,6 +1,5 @@
 def dadosEquipamento():
     while True:
-        dados = []
 
         equipamento = input("Digite o nome do equipamento: ").upper()
         fabricante = input("Digite o nome do fabricante: ").upper()
@@ -28,9 +27,11 @@ def dadosEquipamento():
         if(validacao == 1):
             break
 
-    dados.append(equipamento)
-    dados.append(fabricante)
-    dados.append(modelo)
+    dados = {
+        "Equipamento": equipamento,
+        "Fabricante": fabricante,
+        "Modelo": modelo
+    }
 
     return dados
 

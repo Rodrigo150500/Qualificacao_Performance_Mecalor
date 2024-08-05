@@ -13,6 +13,8 @@ def get_executable_path():
         return os.path.dirname(__file__)
 
 def gerarDataframeSalas(salaTecnica, salaExames, diretorio, nome, datas):
+
+    print(f"Gerar dataframe salas get {get_executable_path()}")
     logSalas = pd.read_csv(diretorio,sep=',')
 
     listaDataHora = gerarColunaDataHora(logSalas)
@@ -52,8 +54,9 @@ def gerarDataframeSalas(salaTecnica, salaExames, diretorio, nome, datas):
     dataframeSalas = pd.DataFrame(data=dadosSalas)
     dataframeSalas = dataframeSalas[dataframeSalas["Data"].isin(datas)].reset_index(drop=True)
 
-    salvarDir = os.path.join(get_executable_path(),'Resultado/LogsAtualizados',nome).replace("\\", "/")
+    salvarDir = os.path.normpath(os.path.join(get_executable_path(),"Resultado/LogsAtualizados",nome))
 
+    print(f"Gerar dataframe Salas salvar dir{salvarDir}")
     dataframeSalas.to_csv(salvarDir,index=False, sep=',', encoding="cp1252")
 
     return dataframeSalas, colunasEquip, colunasExame

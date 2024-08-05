@@ -1,10 +1,19 @@
 import os
 import matplotlib.pyplot as plt
-
+import sys
+def get_executable_path():
+    """Obter o caminho do executável atual."""
+    if getattr(sys, 'frozen', False):
+        # Estamos em um executável empacotado com PyInstaller
+        return os.path.dirname(sys.executable)
+    else:
+        # Estamos executando um script Python normal
+        return os.path.dirname(__file__)
 def gerarGrafico(dataFrames, colunas, nomeImg,titulo):
     nome = nomeImg.split(".")[0] + ".png"
 
-    salvarImagem = os.path.abspath(os.path.join(os.path.dirname(__file__),"../../Resultado/FotosGrafico", nome)).replace("\\", "/")
+    salvarImagem = os.path.normpath(os.path.join(get_executable_path(), "../../Resultado/FotosGrafico", nome))
+
 
     dfTubo = dataFrames.plot(
         kind='line',

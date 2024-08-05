@@ -1,6 +1,5 @@
 def dadosTuboFluxo():
     while True:
-        dados = []
 
         minTemp = int(input("Digite a temperatura mínima: "))
         maxTemp = int(input("Digite a temperatura máxima: "))
@@ -36,12 +35,14 @@ def dadosTuboFluxo():
             break
 
 
-    dados.append(minTemp)
-    dados.append(maxTemp)
-    dados.append(setpointTemp)
-    dados.append(minVazao)
-    dados.append(maxVazao)
-    dados.append(setpointVazao)
+    dados = {
+        "MinTemp":minTemp,
+        "MaxTemp": maxTemp,
+        "SetpointTemp": setpointTemp,
+        "MinVazao":minVazao,
+        "MaxVazao": maxVazao,
+        "SetpointVazao":setpointVazao
+    }
 
     return dados
 

@@ -1,27 +1,36 @@
-from  Função.Dados.DadosPadrao import dadosPadrao
-from  Classes.DadosPadrao import DadosPadrao
-from  Função.Dados.DadosEquipamento import dadosEquipamento
-from  Classes.DadosEquipamento import DadosEquipamento
-from  Função.Dados.DadosSala import dadosSala
-from  Classes.DadosSala import DadosSala
-from  Função.Dados.DadosTuboFluxo import dadosTuboFluxo
-from  Classes.DadosTuboFluxo import DadosTuboFluxo
-from  Função.Geral.LimparLogs import limparResultados
-from  Função.Geral.VerificarLogs import verificarLog
-from  Função.Dataframe.GerarDataframeSalas import gerarDataframeSalas
-from  Função.Dataframe.GerarDataframeTuboFluxo import \
+from Função.Dados.DadosPadrao import dadosPadrao
+from Classes.DadosPadrao import DadosPadrao
+from Função.Dados.DadosEquipamento import dadosEquipamento
+from Classes.DadosEquipamento import DadosEquipamento
+from Função.Dados.DadosSala import dadosSala
+from Classes.DadosSala import DadosSala
+from Função.Dados.DadosTuboFluxo import dadosTuboFluxo
+from Classes.DadosTuboFluxo import DadosTuboFluxo
+from Função.Geral.LimparLogs import limparResultados
+from Função.Geral.SepararDados import separarDados
+from Função.Dataframe.GerarDataframeSalas import gerarDataframeSalas
+from Função.Dataframe.GerarDataframeTuboFluxo import \
     gerarDataframeTuboFluxo
-from  Função.Grafico.ImportarNovasAbas import importarNovasAbas
-from  Função.Grafico.ImportarDados import \
+from Função.Grafico.ImportarNovasAbas import importarNovasAbas
+from Função.Grafico.ImportarDados import \
     importarDados
-from  Função.Grafico.GerarGrafico import gerarGrafico
-from  Função.Grafico.GraficoPreviewCCP import graficoPreviewCCP
+from Função.Grafico.GerarGrafico import gerarGrafico
+from Função.Grafico.GraficoPreview import graficoPreview
+
+
 def caminhoCompletoPadrao(listaLog):
+
+    opcao = {'Sala Exames/Sala Técnica': 1,
+             'Sala Exames':2,
+             'Sala Técnica':3,
+             'Sala Adicional':4,
+             'Tubo de Fluxo':5
+             }
 
     #Mostrando uma preview do grafico sem os limites
     while True:
-        dataSalas = graficoPreviewCCP(1,listaLog)
-        dataTuboFluxo = graficoPreviewCCP(5,listaLog)
+        dataSalas = graficoPreview(listaLog, opcao["Sala Exames/Sala Técnica"])
+        dataTuboFluxo = graficoPreview(listaLog, opcao["Tubo de Fluxo"])
 
         resposta = int(input("Deseja ver novamente: \n"
                              "[1] - Sim\n"
@@ -43,30 +52,33 @@ def caminhoCompletoPadrao(listaLog):
         #Importando os inputs do usuario
         print("Dados Padrão\n")
         dadosPadraoCCP = dadosPadrao()
-        padrao = DadosPadrao(nome=dadosPadraoCCP[0], sigla=dadosPadraoCCP[1], cliente=dadosPadraoCCP[2],
-                             OS=dadosPadraoCCP[3], dataColeta=dadosPadraoCCP[4])
+        padrao = DadosPadrao(nome=dadosPadraoCCP["Nome"], sigla=dadosPadraoCCP["Sigla"],
+                             cliente=dadosPadraoCCP["Cliente"],OS=dadosPadraoCCP["OS"],
+                             dataColeta=dadosPadraoCCP["DataColeta"])
 
         print("\nDados do Equipamento\n")
         dadosEquipamentoCCP = dadosEquipamento()
-        equipamento = DadosEquipamento(nomeEquip=dadosEquipamentoCCP[0], nomeFab=dadosEquipamentoCCP[1],
-                                       nomeMod=dadosEquipamentoCCP[2])
+        equipamento = DadosEquipamento(equipamento=dadosEquipamentoCCP["Equipamento"],
+                                       fabricante=dadosEquipamentoCCP["Fabricante"],
+                                       modelo=dadosEquipamentoCCP["Modelo"])
 
         print("\nDados da Sala de Exame\n")
-        dadosSalaExameCCP = dadosSala(True)
-        salaExame = DadosSala(minTemp=dadosSalaExameCCP[0], maxTemp=dadosSalaExameCCP[1], setTemp=dadosSalaExameCCP[2],
-                              minUmid=dadosSalaExameCCP[3], maxUmid=dadosSalaExameCCP[4], setUmid=dadosSalaExameCCP[5])
+        dadosSalaExameCCP = dadosSala("Exames")
+        salaExame = DadosSala(minTemp=dadosSalaExameCCP["MinTemp"], maxTemp=dadosSalaExameCCP["MaxTemp"],
+                              setTemp=dadosSalaExameCCP["SetpointTemp"], minUmid=dadosSalaExameCCP["MinUmid"],
+                              maxUmid=dadosSalaExameCCP["MaxUmid"], setUmid=dadosSalaExameCCP["SetpointUmid"])
 
         print("\nDados da Sala Técnica\n")
-        dadosSalaTecnicaCCP = dadosSala(False)
-        salaTecnica = DadosSala(minTemp=dadosSalaTecnicaCCP[0], maxTemp=dadosSalaTecnicaCCP[1],
-                                setTemp=dadosSalaTecnicaCCP[2], minUmid=dadosSalaTecnicaCCP[3],
-                                maxUmid=dadosSalaTecnicaCCP[4], setUmid=dadosSalaTecnicaCCP[5])
+        dadosSalaTecnicaCCP = dadosSala("Técnica")
+        salaTecnica = DadosSala(minTemp=dadosSalaTecnicaCCP["MinTemp"], maxTemp=dadosSalaTecnicaCCP["MaxTemp"],
+                                setTemp=dadosSalaTecnicaCCP["SetpointTemp"], minUmid=dadosSalaTecnicaCCP["MinUmid"],
+                                maxUmid=dadosSalaTecnicaCCP["MaxUmid"], setUmid=dadosSalaTecnicaCCP["SetpointUmid"])
 
         print("\nTubo de Fluxo\n")
         dadosTuboFluxoCCP = dadosTuboFluxo()
-        tuboFluxo = DadosTuboFluxo(minTemp=dadosTuboFluxoCCP[0], maxTemp=dadosTuboFluxoCCP[1],
-                                   setTemp=dadosTuboFluxoCCP[2], minVazao=dadosTuboFluxoCCP[3],
-                                   maxVazao=dadosTuboFluxoCCP[4], setVazao=dadosTuboFluxoCCP[5])
+        tuboFluxo = DadosTuboFluxo(minTemp=dadosTuboFluxoCCP["MinTemp"], maxTemp=dadosTuboFluxoCCP["MaxTemp"],
+                                   setTemp=dadosTuboFluxoCCP["SetpointTemp"], minVazao=dadosTuboFluxoCCP["MinVazao"],
+                                   maxVazao=dadosTuboFluxoCCP["MaxVazao"], setVazao=dadosTuboFluxoCCP["SetpointVazao"])
 
 
         print("="*20)
@@ -78,19 +90,18 @@ def caminhoCompletoPadrao(listaLog):
         limparResultados()
         print("Resultados Limpos\n")
 
-        #Verificando os logs se condizem ao que foi selecionado, retorna:
-        #0 - Diretorio
-        #1 - Nome do log
-        diretorioSalas, nomeSalasArquivo, nomeSalas = verificarLog(listaLog=listaLog, n=1)
+        #Verificando os logs se condizem ao que foi selecionado, retorna
+        diretorioSalas, nomeSalasArquivo, nomeSalas = separarDados(listaLog=listaLog, opcao=opcao['Sala Exames/Sala Técnica'])
 
         nomeSalaExame = nomeSalas.split("/")[0]
         nomeSalaTecnica = nomeSalas.split("/")[1]
 
-        diretorioTuboFluxo, nomeTuboFluxoArquivo, nomeTuboFluxo = verificarLog(listaLog=listaLog, n=5)
+        diretorioTuboFluxo, nomeTuboFluxoArquivo, nomeTuboFluxo = separarDados(listaLog=listaLog, opcao=opcao['Tubo de Fluxo'])
+
         print("Logs Verificados\n")
 
         #Criando uma aba para as salas de Exame e Técnica
-        dataFrameSalas,colunaEquip, colunaExame = gerarDataframeSalas(salaTecnica=salaTecnica, salaExames=salaExame,
+        dataFrameSalas, colunaEquip, colunaExame = gerarDataframeSalas(salaTecnica=salaTecnica, salaExames=salaExame,
                                                   diretorio=diretorioSalas,
                                                   nome=nomeSalasArquivo, datas=dataSalas)
 
@@ -107,20 +118,23 @@ def caminhoCompletoPadrao(listaLog):
         gerarGrafico(dataFrames=dataFrameSalas,
                      colunas=colunaEquip,
                      nomeImg=nomeSalaTecnica,
-                     titulo=nomeSalaTecnica)
+                     titulo=nomeSalaTecnica,
+                     )
 
         #Gerando gráfico da Sala de Exames
         gerarGrafico(dataFrames=dataFrameSalas,
                      colunas=colunaExame,
                      nomeImg=nomeSalaExame,
-                     titulo=nomeSalaExame)
+                     titulo=nomeSalaExame,
+                     )
 
 
         #Gerando gráfico do Tubo de Fluxo
         gerarGrafico(dataFrames=dataFrameTubo,
                      colunas=colunaTuboFluxo,
                      nomeImg=nomeTuboFluxo,
-                     titulo=nomeTuboFluxo)
+                     titulo=nomeTuboFluxo,
+                     )
 
         posicoes = ["B11", "B36", "B62"]
         nomes = [nomeSalaTecnica, nomeSalaExame, nomeTuboFluxo]

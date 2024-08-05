@@ -1,6 +1,7 @@
 import os
 import matplotlib.pyplot as plt
 import sys
+
 def get_executable_path():
     """Obter o caminho do executável atual."""
     if getattr(sys, 'frozen', False):
@@ -9,11 +10,14 @@ def get_executable_path():
     else:
         # Estamos executando um script Python normal
         return os.path.dirname(__file__)
+
+
 def gerarGrafico(dataFrames, colunas, nomeImg,titulo):
+
+    print(f'Gerar Gráfico {get_executable_path()}')
     nome = nomeImg.split(".")[0] + ".png"
 
-    salvarImagem = os.path.join(get_executable_path(),"Resultado/FotosGrafico", nome).replace("\\", "/")
-
+    print(f"Gerar Gráfico salvar imagem {os.path.join(get_executable_path(), 'Resultado/FotosGrafico', nome)}")
     dfTubo = dataFrames.plot(
         kind='line',
         x = 'Hora',
@@ -38,7 +42,7 @@ def gerarGrafico(dataFrames, colunas, nomeImg,titulo):
     dfTubo.set_yticks(intervalo_y)
     dfTubo.set_xlim(0)
 
-    plt.savefig(salvarImagem, bbox_inches='tight')
+    plt.savefig(os.path.join(get_executable_path(), 'Resultado/FotosGrafico', nome), bbox_inches='tight')
 
 
 

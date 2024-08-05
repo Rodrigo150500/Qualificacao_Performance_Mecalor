@@ -1,21 +1,33 @@
 import os
-
+import sys
 listaLog = []
-opcao = ['Sala Exames/Sala Técnica','Sala Exames','Sala Técnica','Sala Adicional','Tubo de Fluxo']
+opcao = ['Sala Exames/Sala Técnica', 'Sala Exames', 'Sala Técnica', 'Sala Adicional', 'Tubo de Fluxo']
+
+
+def get_executable_path():
+    """Obter o caminho do executável atual."""
+    if getattr(sys, 'frozen', False):
+        # Estamos em um executável empacotado com PyInstaller
+        return os.path.dirname(sys.executable)
+    else:
+        # Estamos executando um script Python normal
+        return os.path.dirname(__file__)
+
+
 def verificarArquivos():
 
-    path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../Logs'))
-    logs_directory = path.replace("\\", "/")
-    
-    arquivos = os.listdir(logs_directory)
+    arquivos = os.listdir(os.path.join(get_executable_path(), "Logs"))
 
-    #Verificando se há arquivos na pasta GerarColunas
+    # Verificando se há arquivos na pasta GerarColunas
     if len(arquivos) < 1:
         print("Sem arquivos na pasta Logs\n")
         return False
     else:
         while True:
             for arquivo in arquivos:
+                print(f'Arquivo {arquivo}')
+                print(f'juntando {os.path.join(get_executable_path(), "Logs", arquivo)}')
+
 
                 ###
                 # A opção escolhida será de acordo com a sala sendo lida,
@@ -35,29 +47,40 @@ def verificarArquivos():
                     if tipoArquivo <= 0 or tipoArquivo >= 6:
                         print("Valor incorret, digite novamente!!!\n")
                     else:
-                        temp = [tipoArquivo, arquivo, opcao[tipoArquivo-1]]
+
+                        temp = {
+                            "Input": tipoArquivo,
+                            "Log": arquivo,
+                            "Opcao": opcao[tipoArquivo - 1],
+                            "Diretorio": os.path.join(get_executable_path(),'Logs',arquivo)
+                        }
                         listaLog.append(temp)
                         break
 
-            #Apresentando as respostas do usuario
+            # Apresentando as respostas do usuario
             print("Conferindo os arquivos!\n")
-            for arquivo in listaLog:
-                print(f' {arquivo[1]} --> {opcao[arquivo[0]-1]} ')
+            for item in listaLog:
+                print(f' {item["Log"]} --> {item["Opcao"]} ')
             print("")
 
             validacao = int(input("Os arquivos estão corretos?\n"
                                   "[1] - Sim\n"
                                   "[2] - Não\n"))
 
-            #Verificando se a resposta está dentro das opções
+            # Verificando se a resposta está dentro das opções
             while validacao <= 0 or validacao >= 3:
                 print("Valores Incorretos!!!")
                 validacao = int(input("Os arquivos estão corretos?\n"
                                       "[1] - Sim\n"
                                       "[2] - Não\n"))
-            if(validacao == 1):
+            if (validacao == 1):
                 break
             else:
                 listaLog.clear()
-
+    listaLog.append({
+        "DiretorioLogRaiz": os.path.join(get_executable_path(), "Logs")
+    })
     return listaLog
+
+
+

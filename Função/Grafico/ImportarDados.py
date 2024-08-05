@@ -1,8 +1,8 @@
 import os
+import sys
 import openpyxl
 from openpyxl.drawing.image import Image
 
-import sys
 def get_executable_path():
     """Obter o caminho do executável atual."""
     if getattr(sys, 'frozen', False):
@@ -11,9 +11,14 @@ def get_executable_path():
     else:
         # Estamos executando um script Python normal
         return os.path.dirname(__file__)
+
 def importarDados(dadosPadrao, dadosEquipamento, salaTecnica, salaExame, tuboFluxo, posicao, nome):
-    caminho = os.path.join(get_executable_path(),'Resultado/Qualificacao.xlsx').replace("\\", "/")
-    workbook = openpyxl.load_workbook(caminho)
+
+
+    print(f'Importar dados get {get_executable_path()}')
+
+
+    workbook = openpyxl.load_workbook(os.path.join(get_executable_path(),"Resultado/Qualificacao.xlsx"))
 
     abaGrafico = workbook["Grafico"]
 
@@ -62,11 +67,14 @@ def importarDados(dadosPadrao, dadosEquipamento, salaTecnica, salaExame, tuboFlu
 
 
     for i in range (0,len(posicao),1):
-        caminhoImagem = os.path.join(get_executable_path(),"Resultado/FotosGrafico", nome[i]+".png").replace("\\", "/")
-        img = Image(caminhoImagem)
+
+
+
+        print(f"importar dados caminho imagem {os.path.join(get_executable_path(), 'Resultado/FotosGrafico', nome[i]+'.png')}")
+        img = Image(os.path.join(get_executable_path(), "Resultado/FotosGrafico", nome[i]+".png"))
         abaGrafico.add_image(img, posicao[i])
 
-    workbook.save(caminho)
+    workbook.save(os.path.join(get_executable_path(),"Resultado/Qualificacao.xlsx"))
 
 
 
