@@ -16,7 +16,7 @@ from Função.Grafico.ImportarDados import \
     importarDados
 from Função.Grafico.GerarGrafico import gerarGrafico
 from Função.Grafico.GraficoPreview import graficoPreview
-
+from Função.Exception.Exception import ExceptionSimNao
 
 def caminhoCompletoPadrao(listaLog):
 
@@ -32,22 +32,17 @@ def caminhoCompletoPadrao(listaLog):
         dataSalas = graficoPreview(listaLog, opcao["Sala Exames/Sala Técnica"])
         dataTuboFluxo = graficoPreview(listaLog, opcao["Tubo de Fluxo"])
 
-        resposta = int(input("Deseja ver novamente: \n"
-                             "[1] - Sim\n"
-                             "[2] - Não\n"))
+        resposta = ExceptionSimNao("Deseja ver novamente:\n"
+                                     "[1] - Sim\n"
+                                     "[2] - Não\n")
+
         if resposta == 2:
             break
 
-    continuar = int(input("Deseja continuar: \n"
-                          "[1] - Sim\n"
-                          "[2] - Não\n"))
-    while (continuar <= 0 or continuar >= 3):
-       print("Valores Incorretos")
-       continuar = int(input("Deseja continuar: \n"
-                             "[1] - Sim\n"
-                             "[2] - Não\n"))
-       if continuar == 1 or continuar == 2:
-            break
+    continuar = ExceptionSimNao("Deseja continuar:\n"
+                                     "[1] - Sim\n"
+                                     "[2] - Não\n")
+
     if continuar == 1:
         #Importando os inputs do usuario
         print("Dados Padrão\n")
@@ -88,7 +83,15 @@ def caminhoCompletoPadrao(listaLog):
 
         #Limpando os logs da pasta LogsAtuzalidos
         limparResultados()
-        print("Resultados Limpos\n")
+        print(f"{'='*20}\n"
+              f"PROGRESSO 16%\n"
+              f"{'='*20}\n"
+              "Resultados Limpos - OK\n"
+              "Dados Separados - \n"
+              "Dataframes Gerados - \n"
+              "Dataframes Importados - \n"
+              "Gráficos Gerados - \n"
+              "Dados Importados - \n")
 
         #Verificando os logs se condizem ao que foi selecionado, retorna
         diretorioSalas, nomeSalasArquivo, nomeSalas = separarDados(listaLog=listaLog, opcao=opcao['Sala Exames/Sala Técnica'])
@@ -98,7 +101,15 @@ def caminhoCompletoPadrao(listaLog):
 
         diretorioTuboFluxo, nomeTuboFluxoArquivo, nomeTuboFluxo = separarDados(listaLog=listaLog, opcao=opcao['Tubo de Fluxo'])
 
-        print("Logs Verificados\n")
+        print(f"{'='*20}\n"
+              f"PROGRESSO 32%\n"
+              f"{'='*20}\n"
+              "Resultados Limpos - OK\n"
+              "Dados Separados - OK\n"
+              "Dataframes Gerados - \n"
+              "Dataframes Importados - \n"
+              "Gráficos Gerados - \n"
+              "Dados Importados - \n")
 
         #Criando uma aba para as salas de Exame e Técnica
         dataFrameSalas, colunaEquip, colunaExame = gerarDataframeSalas(salaTecnica=salaTecnica, salaExames=salaExame,
@@ -109,10 +120,27 @@ def caminhoCompletoPadrao(listaLog):
         dataFrameTubo, colunaTuboFluxo = gerarDataframeTuboFluxo(tubofluxo=tuboFluxo, diretorio=diretorioTuboFluxo,
                                                 nome=nomeTuboFluxoArquivo, datas = dataTuboFluxo)
 
-        print("Abas para as salas e tubo criadas\n")
+        print(f"{'='*20}\n"
+              f"PROGRESSO 48%\n"
+              f"{'='*20}\n"
+              "Resultados Limpos - OK\n"
+              "Dados Separados - OK\n"
+              "Dataframes Gerados - OK\n"
+              "Dataframes Importados - \n"
+              "Gráficos Gerados - \n"
+              "Dados Importados - \n")
 
         #Importando os dataframes no excel em cada aba
-        importarNovasAbas(dataFrameSalas,dataFrameTubo,nomeSalasArquivo,nomeTuboFluxoArquivo)
+        importarNovasAbas(dataFrameSalas, dataFrameTubo, nomeSalasArquivo, nomeTuboFluxoArquivo)
+        print(f"{'='*20}\n"
+              f"PROGRESSO 60%\n"
+              f"{'='*20}\n"
+              "Resultados Limpos - OK\n"
+              "Dados Separados - OK\n"
+              "Dataframes Gerados - OK\n"
+              "Dataframes Importados - OK\n"
+              "Gráficos Gerados - \n"
+              "Dados Importados - \n")
 
         #Gerando gráfico da Sala Ténica
         gerarGrafico(dataFrames=dataFrameSalas,
@@ -135,6 +163,15 @@ def caminhoCompletoPadrao(listaLog):
                      nomeImg=nomeTuboFluxo,
                      titulo=nomeTuboFluxo,
                      )
+        print(f"{'='*20}\n"
+              f"PROGRESSO 80%\n"
+              f"{'='*20}\n"
+              "Resultados Limpos - OK\n"
+              "Dados Separados - OK\n"
+              "Dataframes Gerados - OK\n"
+              "Dataframes Importados - OK\n"
+              "Gráficos Gerados - OK\n"
+              "Dados Importados - \n")
 
         posicoes = ["B11", "B36", "B62"]
         nomes = [nomeSalaTecnica, nomeSalaExame, nomeTuboFluxo]
@@ -144,6 +181,15 @@ def caminhoCompletoPadrao(listaLog):
         #Importando os dados padrão para preenchimento do excel
         importarDados(padrao, equipamento, salaTecnica, salaExame, tuboFluxo, posicoes, nomes)
 
+        print(f"{'='*20}\n"
+              f"PROGRESSO 100%\n"
+              f"{'='*20}\n"
+              "Resultados Limpos - OK\n"
+              "Dados Separados - OK\n"
+              "Dataframes Gerados - OK\n"
+              "Dataframes Importados - OK\n"
+              "Gráficos Gerados - OK\n"
+              "Dados Importados - OK\n")
         #Incluindo dados no QP
         print("FINALIZADO!!!")
     else:

@@ -12,17 +12,19 @@ def get_executable_path():
         return os.path.dirname(__file__)
 
 
-def gerarGrafico(dataFrames, colunas, nomeImg,titulo):
+def gerarGrafico(dataFrames, colunas, nomeImg, titulo):
 
-    print(f'Gerar Gráfico {get_executable_path()}')
     nome = nomeImg.split(".")[0] + ".png"
 
-    print(f"Gerar Gráfico salvar imagem {os.path.join(get_executable_path(), 'Resultado/FotosGrafico', nome)}")
+
+    caminhoSalvar = os.path.join(get_executable_path(), 'Resultado/FotosGrafico', nome)
+
+
     dfTubo = dataFrames.plot(
         kind='line',
         x = 'Hora',
         y = colunas,
-        color = ['red','red','blue','orange','orange','purple'],
+        color = ['purple','purple','red','orange','orange','blue'],
         title=titulo,
         figsize = (18,8),
         linewidth = 1
@@ -42,7 +44,7 @@ def gerarGrafico(dataFrames, colunas, nomeImg,titulo):
     dfTubo.set_yticks(intervalo_y)
     dfTubo.set_xlim(0)
 
-    plt.savefig(os.path.join(get_executable_path(), 'Resultado/FotosGrafico', nome), bbox_inches='tight')
+    plt.savefig(caminhoSalvar, bbox_inches='tight')
 
 
 

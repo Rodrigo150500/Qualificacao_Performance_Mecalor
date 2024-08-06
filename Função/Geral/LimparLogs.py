@@ -10,7 +10,6 @@ def get_executable_path():
         return os.path.dirname(os.path.abspath(__file__))
 def limparResultados():
 
-    print(f'Limpar Logs get {get_executable_path()}')
     #Limpando os logs antigos
 
     caminho = os.path.join(get_executable_path(),"Resultado/LogsAtualizados")
@@ -19,9 +18,6 @@ def limparResultados():
 
     arquivos = os.listdir(caminho)
 
-    print(f"Limpar Logs caminho {caminho}")
-    print(f"Limpar Logs caminhoQP {caminhoQP}")
-    print(f"Limpar Logs caminhoFoto {caminhoFoto}")
     #Deletando os resultados dos logs
     if len(arquivos) != 0:
         for arquivo in arquivos:
@@ -38,4 +34,5 @@ def limparResultados():
         for foto in fotos:
             caminhoNovo = os.path.join(caminhoFoto,foto)
             os.remove(caminhoNovo)
+
 

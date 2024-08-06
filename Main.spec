@@ -8,7 +8,7 @@ a = Analysis(
     ['Main.py'],
     pathex=[],
     binaries=[],
-    datas=[('C:\\Users\\Rodrigo\\Desktop\\QP\\Qualificação_Performance\\Backup', 'Backup'), ('C:\\Users\\Rodrigo\\Desktop\\QP\\Qualificação_Performance\\Caminhos', 'Caminhos'), ('C:\\Users\\Rodrigo\\Desktop\\QP\\Qualificação_Performance\\Classes', 'Classes'), ('C:\\Users\\Rodrigo\\Desktop\\QP\\Qualificação_Performance\\Função', 'Função'), ('C:\\Users\\Rodrigo\\Desktop\\QP\\Qualificação_Performance\\Logs', 'Logs'), ('C:\\Users\\Rodrigo\\Desktop\\QP\\Qualificação_Performance\\Resultado', 'Resultado')],
+    datas=[('C:\\Users\\Rodrigo\\Desktop\\QP\\Qualificação_Performance\\Backup', 'Backup'), ('C:\\Users\\Rodrigo\\Desktop\\QP\\Qualificação_Performance\\Logs', 'Logs'), ('C:\\Users\\Rodrigo\\Desktop\\QP\\Qualificação_Performance\\Resultado', 'Resultado')],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},

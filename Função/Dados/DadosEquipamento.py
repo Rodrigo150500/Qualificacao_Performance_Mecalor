@@ -1,3 +1,4 @@
+from Função.Exception.Exception import ExceptionSimNao
 def dadosEquipamento():
     while True:
 
@@ -12,17 +13,9 @@ def dadosEquipamento():
               f"Fabricante: {fabricante}\n"
               f"Modelo: {modelo}\n")
 
-        validacao = int(input("Os valores estão corretos?\n"
-                              "[1] - Sim\n"
-                              "[2] - Não\n "))
-
-        while validacao <= 0 or validacao >= 3:
-            print("Valor Incorreto!!!")
-            validacao = int(input("Os valores estão corretos?\n"
-                                  "[1] - Sim\n"
-                                  "[2] - Não\n "))
-            if (validacao == 1 or validacao == 2):
-                break
+        validacao = ExceptionSimNao("Os dados estão corretos:\n"
+                                     "[1] - Sim\n"
+                                     "[2] - Não\n")
 
         if(validacao == 1):
             break

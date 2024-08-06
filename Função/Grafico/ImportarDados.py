@@ -15,10 +15,10 @@ def get_executable_path():
 def importarDados(dadosPadrao, dadosEquipamento, salaTecnica, salaExame, tuboFluxo, posicao, nome):
 
 
-    print(f'Importar dados get {get_executable_path()}')
 
+    caminhoExcel = os.path.join(get_executable_path(),"Resultado/Qualificacao.xlsx")
 
-    workbook = openpyxl.load_workbook(os.path.join(get_executable_path(),"Resultado/Qualificacao.xlsx"))
+    workbook = openpyxl.load_workbook(caminhoExcel)
 
     abaGrafico = workbook["Grafico"]
 
@@ -70,8 +70,8 @@ def importarDados(dadosPadrao, dadosEquipamento, salaTecnica, salaExame, tuboFlu
 
 
 
-        print(f"importar dados caminho imagem {os.path.join(get_executable_path(), 'Resultado/FotosGrafico', nome[i]+'.png')}")
-        img = Image(os.path.join(get_executable_path(), "Resultado/FotosGrafico", nome[i]+".png"))
+        caminhoImagem = os.path.join(get_executable_path(), "Resultado/FotosGrafico", nome[i]+".png")
+        img = Image(caminhoImagem)
         abaGrafico.add_image(img, posicao[i])
 
     workbook.save(os.path.join(get_executable_path(),"Resultado/Qualificacao.xlsx"))

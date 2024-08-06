@@ -1,14 +1,20 @@
+from Função.Exception.Exception import ExceptionSimNao
 def dadosSala(sala):
 
     while True:
+        while True:
+            try:
+                minTemp = int(input("Digite a temperatura mínima da sala: "))
+                maxTemp = int(input("Digite a temperatura máxima da sala: "))
+                setpointTemp = int(input("Digite o setpoint de temperatura da sala: "))
+                minUmid = int(input("Digite a umidade mínimo da sala: "))
+                maxUmid = int(input("Digite a umimdade máxima da sala: "))
+                setpointUmid = int(input("Digite o setpoint de umidade da sala: "))
 
-        minTemp = int(input("Digite a temperatura mínima da sala: "))
-        maxTemp = int(input("Digite a temperatura máxima da sala: "))
-        setpointTemp = int(input("Digite o setpoint de temperatura da sala: "))
-        minUmid = int(input("Digite a umidade mínimo da sala: "))
-        maxUmid = int(input("Digite a umimdade máxima da sala: "))
-        setpointUmid = int(input("Digite o setpoint de umidade da sala: "))
+                break
 
+            except:
+                print("\nDigite apenas números!!!\n")
         print(f"\n======================\n"
               f"Dados da Sala {sala}\n"
               f"======================\n"
@@ -19,17 +25,9 @@ def dadosSala(sala):
               f"Umidade Máxima: {maxUmid}\n"
               f"Setpoint Umidade: {setpointUmid}\n")
 
-        validacao = int(input("Os valores estão corretos?\n"
-                              "[1] - Sim\n"
-                              "[2] - Não\n"))
-
-        while validacao <= 0 or validacao >= 3:
-            print("Valor Incorreto!!!\n")
-            validacao = int(input("Os valores estão corretos?\n"
-                                  "[1] - Sim\n"
-                                  "[2] - Não\n"))
-            if validacao == 1 or validacao == 2:
-                break
+        validacao = ExceptionSimNao("Os dados estão corretos:\n"
+                                     "[1] - Sim\n"
+                                     "[2] - Não\n")
 
         if validacao == 1:
             break

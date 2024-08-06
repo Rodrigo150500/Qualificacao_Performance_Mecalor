@@ -1,25 +1,28 @@
 import os
 import pandas as pd
 from Função.GerarColunas.GerarColunaDataHora import gerarColunaDataHora
+from Função.Exception.Exception import ExceptionSimNao
 import matplotlib.pyplot as plt
 from collections import OrderedDict
 
 def verificarDatas(listaDatas, sala):
 
     datas = []
-    print(f"\nQuais datas farão parte do QP da {sala}:\n")
-    for data in listaDatas:
-        while True:
-            res = int(input(f"Deseja incluir a data: {data}\n"
-                            f"[1] - Sim\n"
-                            f"[2] - Não\n"))
-            if res <= 0 or res >= 3:
-                print("Valores Incorretos")
-            else:
-                break
-        if res == 1:
-            datas.append(data)
 
+    while True:
+        print(f"\nQuais datas farão parte do QP da {sala}:\n")
+        for data in listaDatas:
+
+            res = ExceptionSimNao(f"Deseja incluir a data: {data}\n"
+                                    f"[1] - Sim\n"
+                                    f"[2] - Não\n")
+            if res == 1:
+                datas.append(data)
+
+        if len(datas) < 1:
+            print("Coloque pelo menos 1 data")
+        else:
+            break
     return datas
 
 
@@ -46,6 +49,10 @@ def gerarGrafico(dados, colunas, titulo):
     intervalo_y = range(0, int(max(dataFrames[colunas].max()) + 5), 5)
     df.set_yticks(intervalo_y)
     df.set_xlim(0)
+
+    mng = plt.get_current_fig_manager()
+    mng.full_screen_toggle()
+
     plt.show()
 
 
@@ -54,9 +61,11 @@ def graficoPreview(listaLog, numeroOpcao):
     #Diretorio dos logs
     logDiretorio = listaLog[-1]["DiretorioLogRaiz"]
 
+
     #Pegando os arquivos do diretório
     logs = os.listdir(logDiretorio)
-    print(f"Grafico Preview {logDiretorio}")
+
+
     for item in listaLog:
         for log in logs:
             if(item["Log"] == log and item["Input"] == numeroOpcao):
@@ -100,7 +109,8 @@ def graficoPreview(listaLog, numeroOpcao):
                     for data in listaDatas:
                         datas += f"{data}, "
                     print(datas)
-                    input("Essas são as datas, pressione qualquer tecla para continuar...")
+
+                    input("Essas são as datas, pressione ENTER para continuar...")
 
 
                     #Gerando o gráfico, os dados é o log processado porém filtrado pelo nome das colunas

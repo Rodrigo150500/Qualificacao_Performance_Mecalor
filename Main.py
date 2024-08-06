@@ -16,11 +16,8 @@ listaLog = verificarArquivos()
 ###
 if listaLog != False:
     print("Caminho Completo Padrão\n")
-    try:
-        caminhoCompletoPadrao(listaLog)
-    except:
-        print("Erro")
-        input()
+    caminhoCompletoPadrao(listaLog)
+
 '''
     while True:
         #Definindo o caminho se é COMPLETO ou RESUMIDO
