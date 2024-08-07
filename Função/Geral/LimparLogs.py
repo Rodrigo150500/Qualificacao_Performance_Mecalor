@@ -39,5 +39,5 @@ def limparResultados():
         except:
             print("\nFECHE TODOS OS ARQUIVOS DA PASTA RESULTADOS!!!")
             print("NÃO CONSIGO REMOVER ARQUIVOS QUE ESTÃO EM USO")
-            input("Pressione ENTER para continuar...")
+            input("FECHE E ABRA NOVAMENTE...")
 

@@ -56,11 +56,9 @@ def gerarDataframeSalas(salaTecnica, salaExames, diretorio, nome, datas):
 
     salvarDir = os.path.normpath(os.path.join(get_executable_path(),"Resultado/LogsAtualizados",nome))
 
-    dataframeSalas.to_csv(salvarDir,index=False, sep=',', encoding="cp1252")
+    dataframeSalas.to_csv(salvarDir, index=False, sep=',', encoding="cp1252")
 
-    dataframeSalas = dataframeSalas[dataframeSalas["Data"].isin(datas)].reset_index(drop=True)
+    dataframeSalasGrafico = dataframeSalas[dataframeSalas["Data"].isin(datas)].reset_index(drop=True)
 
-
-
-    return dataframeSalas, colunasEquip, colunasExame
+    return dataframeSalas, colunasEquip, colunasExame, dataframeSalasGrafico
 

@@ -38,8 +38,21 @@ def gerarGrafico(dados, colunas, titulo):
         figsize=(18, 8),
         linewidth=1
     )
+
+
+
+    total_pontos = len(dataFrames["Hora"])
+    max_rótulos = 55  # Número máximo de rótulos que desejamos no eixo X
+
+    # Calculando o intervalo de amostragem para rótulos de hora
+    if total_pontos <= max_rótulos:
+        intervalo_amostra = 1
+    else:
+        intervalo_amostra = total_pontos // max_rótulos
+
+
     #Arrumando o eixo das Horas
-    amostra_indices = range(0,len(dataFrames["Hora"]),300)
+    amostra_indices = range(0,len(dataFrames["Hora"]),intervalo_amostra)
     amostra_rotulos = dataFrames["Hora"].iloc[amostra_indices]
     df.set_xticks(amostra_rotulos.index)
     df.set_xticklabels(amostra_rotulos, rotation=45, ha='right')

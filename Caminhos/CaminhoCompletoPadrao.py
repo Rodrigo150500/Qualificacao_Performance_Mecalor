@@ -112,13 +112,15 @@ def caminhoCompletoPadrao(listaLog):
               "Dados Importados - \n")
 
         #Criando uma aba para as salas de Exame e Técnica
-        dataFrameSalas, colunaEquip, colunaExame = gerarDataframeSalas(salaTecnica=salaTecnica, salaExames=salaExame,
-                                                  diretorio=diretorioSalas,
-                                                  nome=nomeSalasArquivo, datas=dataSalas)
+        dataFrameSalas, colunaEquip, colunaExame, dataFrameSalasGrafico = gerarDataframeSalas(salaTecnica=salaTecnica,
+                                                                           salaExames=salaExame,
+                                                                       diretorio=diretorioSalas,
+                                                                       nome=nomeSalasArquivo, datas = dataSalas)
 
         #Criando uma aba para o tubo de fluxo
-        dataFrameTubo, colunaTuboFluxo = gerarDataframeTuboFluxo(tubofluxo=tuboFluxo, diretorio=diretorioTuboFluxo,
-                                                nome=nomeTuboFluxoArquivo, datas = dataTuboFluxo)
+        dataFrameTubo, colunaTuboFluxo, dataFrameTuboGrafico = gerarDataframeTuboFluxo(tubofluxo=tuboFluxo,
+                                                                       diretorio=diretorioTuboFluxo,
+                                                                 nome=nomeTuboFluxoArquivo, datas = dataTuboFluxo )
 
         print(f"{'='*20}\n"
               f"PROGRESSO 48%\n"
@@ -143,14 +145,14 @@ def caminhoCompletoPadrao(listaLog):
               "Dados Importados - \n")
 
         #Gerando gráfico da Sala Ténica
-        gerarGrafico(dataFrames=dataFrameSalas,
+        gerarGrafico(dataFrames=dataFrameSalasGrafico,
                      colunas=colunaEquip,
                      nomeImg=nomeSalaTecnica,
                      titulo=nomeSalaTecnica,
                      )
 
         #Gerando gráfico da Sala de Exames
-        gerarGrafico(dataFrames=dataFrameSalas,
+        gerarGrafico(dataFrames=dataFrameSalasGrafico,
                      colunas=colunaExame,
                      nomeImg=nomeSalaExame,
                      titulo=nomeSalaExame,
@@ -158,7 +160,7 @@ def caminhoCompletoPadrao(listaLog):
 
 
         #Gerando gráfico do Tubo de Fluxo
-        gerarGrafico(dataFrames=dataFrameTubo,
+        gerarGrafico(dataFrames=dataFrameTuboGrafico,
                      colunas=colunaTuboFluxo,
                      nomeImg=nomeTuboFluxo,
                      titulo=nomeTuboFluxo,

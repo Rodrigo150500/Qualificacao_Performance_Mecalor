@@ -40,11 +40,10 @@ def gerarDataframeTuboFluxo(tubofluxo, diretorio, nome, datas):
     dataFrameTubo = pd.DataFrame(data=dadosTubo)
 
     salvarDir = os.path.normpath(os.path.join(get_executable_path(),"Resultado/LogsAtualizados",nome))
+
     dataFrameTubo.to_csv(salvarDir,index=False, sep=',', encoding="cp1252")
 
-    dataFrameTubo = dataFrameTubo[dataFrameTubo["Data"].isin(datas)].reset_index(drop=True)
+    dataFrameTuboGrafico = dataFrameTubo[dataFrameTubo["Data"].isin(datas)].reset_index(drop=True)
 
 
-
-
-    return dataFrameTubo, colunas
+    return dataFrameTubo, colunas, dataFrameTuboGrafico
