@@ -25,6 +25,7 @@ def verificarArquivos():
     # Verificando se há arquivos na pasta GerarColunas
     if len(arquivos) < 1:
         print("Sem arquivos na pasta Logs\n")
+        input("Aperte ENTER para continuar...")
         return False
     else:
         while True:

@@ -50,9 +50,6 @@ def gerarGrafico(dados, colunas, titulo):
     df.set_yticks(intervalo_y)
     df.set_xlim(0)
 
-    mng = plt.get_current_fig_manager()
-    mng.full_screen_toggle()
-
     plt.show()
 
 

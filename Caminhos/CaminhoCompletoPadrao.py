@@ -57,19 +57,19 @@ def caminhoCompletoPadrao(listaLog):
                                        fabricante=dadosEquipamentoCCP["Fabricante"],
                                        modelo=dadosEquipamentoCCP["Modelo"])
 
-        print("\nDados da Sala de Exame\n")
+        #Sala de Exames
         dadosSalaExameCCP = dadosSala("Exames")
         salaExame = DadosSala(minTemp=dadosSalaExameCCP["MinTemp"], maxTemp=dadosSalaExameCCP["MaxTemp"],
                               setTemp=dadosSalaExameCCP["SetpointTemp"], minUmid=dadosSalaExameCCP["MinUmid"],
                               maxUmid=dadosSalaExameCCP["MaxUmid"], setUmid=dadosSalaExameCCP["SetpointUmid"])
 
-        print("\nDados da Sala Técnica\n")
+        #Sala Técnica
         dadosSalaTecnicaCCP = dadosSala("Técnica")
         salaTecnica = DadosSala(minTemp=dadosSalaTecnicaCCP["MinTemp"], maxTemp=dadosSalaTecnicaCCP["MaxTemp"],
                                 setTemp=dadosSalaTecnicaCCP["SetpointTemp"], minUmid=dadosSalaTecnicaCCP["MinUmid"],
                                 maxUmid=dadosSalaTecnicaCCP["MaxUmid"], setUmid=dadosSalaTecnicaCCP["SetpointUmid"])
 
-        print("\nTubo de Fluxo\n")
+        #Tubo de Fluxo
         dadosTuboFluxoCCP = dadosTuboFluxo()
         tuboFluxo = DadosTuboFluxo(minTemp=dadosTuboFluxoCCP["MinTemp"], maxTemp=dadosTuboFluxoCCP["MaxTemp"],
                                    setTemp=dadosTuboFluxoCCP["SetpointTemp"], minVazao=dadosTuboFluxoCCP["MinVazao"],

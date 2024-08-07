@@ -3,6 +3,7 @@ def dadosSala(sala):
 
     while True:
         while True:
+            print(f"\nDados da Sala {sala}\n")
             try:
                 minTemp = int(input("Digite a temperatura mínima da sala: "))
                 maxTemp = int(input("Digite a temperatura máxima da sala: "))

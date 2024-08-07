@@ -20,7 +20,7 @@ def gerarGrafico(dataFrames, colunas, nomeImg, titulo):
     caminhoSalvar = os.path.join(get_executable_path(), 'Resultado/FotosGrafico', nome)
 
 
-    dfTubo = dataFrames.plot(
+    dataframeArquivo = dataFrames.plot(
         kind='line',
         x = 'Hora',
         y = colunas,
@@ -31,18 +31,18 @@ def gerarGrafico(dataFrames, colunas, nomeImg, titulo):
     )
 
     #Arrumando o eixo das Horas
-    amostra_indices = range(0,len(dataFrames["Hora"]),300)
+    amostra_indices = range(0,len(dataFrames["Hora"]),50)
     amostra_rotulos = dataFrames["Hora"].iloc[amostra_indices]
-    dfTubo.set_xticks(amostra_rotulos.index)
-    dfTubo.set_xticklabels(amostra_rotulos, rotation=45, ha='right')
+    dataframeArquivo.set_xticks(amostra_rotulos.index)
+    dataframeArquivo.set_xticklabels(amostra_rotulos, rotation=45, ha='right')
 
     #Deslocando a legenda para fora do gráfico
-    dfTubo.legend(bbox_to_anchor=(1.01, 1), loc='upper left')
+    dataframeArquivo.legend(bbox_to_anchor=(1.01, 1), loc='upper left')
 
 
     intervalo_y = range(0, int(max(dataFrames[colunas].max()) + 5), 5)
-    dfTubo.set_yticks(intervalo_y)
-    dfTubo.set_xlim(0)
+    dataframeArquivo.set_yticks(intervalo_y)
+    dataframeArquivo.set_xlim(0)
 
     plt.savefig(caminhoSalvar, bbox_inches='tight')
 

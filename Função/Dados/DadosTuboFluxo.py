@@ -3,6 +3,7 @@ from Função.Exception.Exception import ExceptionSimNao
 def dadosTuboFluxo():
     while True:
         while True:
+            print("\nTubo de Fluxo\n")
             try:
                 minTemp = int(input("Digite a temperatura mínima: "))
                 maxTemp = int(input("Digite a temperatura máxima: "))
