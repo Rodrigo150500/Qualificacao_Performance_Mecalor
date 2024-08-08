@@ -2,11 +2,18 @@ from Função.Exception.Exception import ExceptionSimNao
 
 def dadosPadrao():
     while True:
-        nome = input("Digite o nome do coordenador: ").upper()
-        sigla = input("Digite a sigla: ").upper()
-        cliente = input("Digite o nome do cliente: ").upper()
-        OS = input("Digite o nome da OS: ").upper()
-        dataColeta = input("Digite a data da coleta dos Logs: ").upper()
+
+        while True:
+            nome = input("Digite o nome do coordenador: ").upper()
+            sigla = input("Digite a sigla: ").upper()
+            cliente = input("Digite o nome do cliente: ").upper()
+            OS = input("Digite o nome da OS: ").upper()
+            dataColeta = input("Digite a data da coleta dos Logs: ").upper()
+
+            if ((nome != "") and (sigla != "") and (cliente != "") and (OS != "") and (dataColeta != "")):
+                break
+            else:
+                print("\nPreencha todos os campos!!!\n")
 
         print(f"\n==============\n"
               f"Dados Gerais \n"
