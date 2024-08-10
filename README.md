@@ -6,7 +6,7 @@
 
 ![Zip Download](https://github.com/user-attachments/assets/9c6cd516-71c2-4414-8be5-86e5a412ebf6)
 
-<p>Nos arquivos encontre a pasta Dist, dentro dessa pasta encontrará a pasta Backup, Logs e Resultados. Na pasta Logs coloca os logs coletados das salas e do tubo de fluxo por exemplo, após isso execute o arquivo Main.py</p>
+<p>Nos arquivos encontre a pasta Dist, dentro dessa pasta encontrará a pasta Backup, Logs e Resultados. Na pasta Logs coloca os logs coletados das salas e do tubo de fluxo por exemplo, após isso execute o arquivo Main que está dentro da pasta dist</p>
 
 <p>Assim que o programa finalizar, o gráfico gerado estará na pasta resultados, onde pode-se extrair apenas as fotos dos gráficos, os logs já processados com os dados pertinentes e o gráfico em excel</p>
 
