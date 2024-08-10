@@ -1,5 +1,5 @@
 <h1>Qualificação de Performance</h1>
-<p>Programa desenvolvido para estar realizando gráficos de forma automática, através da coleta dos logs das salas de Exames e Técnica e com os dados do Tubo de fluxo o gráfico é gerado para mostrar como os equipamentos de climatização estão operando de forma esperada</p>
+<p>Programa desenvolvido para estar realizando gráficos de forma automática, através da coleta dos logs das salas de Exames e Técnica e com os dados do Tubo de fluxo, o gráfico é gerado para mostrar como os equipamentos de climatização estão operando de forma esperada</p>
 
 <h2>Como usar</h2>
 <p>Baixe os arquivos de forma zipada indo em Code>Download Zip</p>
