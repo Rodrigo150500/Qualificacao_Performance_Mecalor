@@ -59,11 +59,10 @@ def importarDados(dadosPadrao, dadosEquipamento, salaTecnica, salaExame, tuboFlu
     #Dados Tubo de Fluxo
     abaGrafico["D59"] = tuboFluxo.minTemp
     abaGrafico["F59"] = tuboFluxo.minVazao
-    abaGrafico["I59"] = tuboFluxo.setTemp
+    abaGrafico["I59"] = tuboFluxo.setVazao
     abaGrafico["D60"] = tuboFluxo.maxTemp
     abaGrafico["F60"] = tuboFluxo.maxVazao
-    abaGrafico["I60"] = tuboFluxo.setVazao
-
+    abaGrafico["I60"] = tuboFluxo.setTemp
 
 
     for i in range (0,len(posicao),1):

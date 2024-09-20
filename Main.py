@@ -2,18 +2,6 @@ from Função.Geral.VerificacaoArquivos \
     import verificarArquivos
 from Caminhos.CaminhoCompletoPadrao import caminhoCompletoPadrao
 
-"""
-
-
-Fixed - Arrumar os limites de quando seleciona 1 2 3 4 datas, uma forma do eixo X se comportar de acordo com a 
-quantidade de datas selecionadas
-
-Fixed - Deixar as abas do excel com os logs completos, quando é filtrado dentro do programa, no excel mostra as datas 
-filtradas e não com todas as datas
-
-Melhorar o diretório do gráfico preview, na lista log já possui o diretório de cada log
-
-"""
 
 print('='*20)
 print("INICIANDO PROGRAMA")

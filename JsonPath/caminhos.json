@@ -1,0 +1,54 @@
+{
+  "logs": {
+    "dev": "../../logs",
+    "build": "logs"
+  },
+  "limparResultados": {
+    "dev":{
+      "caminho": "../../Resultado/LogsAtualizados",
+      "caminhoQP": "../../Resultado/Qualificacao.xlsx",
+      "caminhoFoto": "../../Resultado/FotosGrafico"
+    },
+    "buid": {
+      "caminho": "Resultado/LogsAtualizados",
+      "caminhoQP": "Resultado/Qualificacao.xlsx",
+      "caminhoFoto": "Resultado/FotosGrafico"
+    }
+  },
+  "gerarDataframeSalas": {
+    "dev": "../../Resultado/LogsAtualizados ",
+    "buid": "Resultado/LogsAtualizados"
+  },
+  "gerarDataframeTuboFluxo": {
+    "dev" : "../../Resultado/LogsAtualizados",
+    "build": "Resultado/LogsAtualizados"
+  },
+  "importarNovasAbas": {
+    "dev": {
+      "caminhoExcel": "../../Backup/Qualificacao.xlsx",
+      "caminhoSalvar": "../../Resultado"
+    },
+    "buid": {
+      "caminhoExcel": "Backup/Qualificacao.xlsx",
+      "caminhoSalvar": "Resultado"
+    }
+  },
+  "gerarGrafico": {
+    "dev": "../../Resultado/FotosGrafico",
+    "build": "Resultado/FotosGrafico"
+  },
+  "importarDados": {
+    "dev": {
+      "caminhoExcel": "../../Resultado/Qualificacao.xlsx",
+      "caminhoImagem": "../../Resultado/FotosGrafico",
+      "workbook": "../../Resultado/Qualificacao.xlsx"
+    },
+    "build": {
+      "caminhoExcel": "Resultado/Qualificacao.xlsx",
+      "caminhoImagem": "../../Resultado/FotosGrafico",
+      "workbook": "Resultado/Qualificacao.xlsx"
+    }
+  }
+
+
+}

@@ -15,8 +15,15 @@ def get_executable_path():
         return os.path.dirname(__file__)
 
 
-def verificarArquivos():
+def verificarExecucaoPyinstaller():
+    if getattr(sys, 'frozen', False):
+        #Executando no Pyinstaller
+        return True
+    else:
+        #Executando na IDE
+        return False
 
+def verificarArquivos():
 
     caminho = os.path.join(get_executable_path(), "Logs")
     arquivos = os.listdir(caminho)
@@ -30,7 +37,6 @@ def verificarArquivos():
     else:
         while True:
             for arquivo in arquivos:
-
 
                 ###
                 # A opção escolhida será de acordo com a sala sendo lida,
