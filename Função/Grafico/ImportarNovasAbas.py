@@ -1,24 +1,14 @@
 import os
-import sys
 import pandas as pd
 import shutil
-
-def get_executable_path():
-    """Obter o caminho do executável atual."""
-    if getattr(sys, 'frozen', False):
-        # Estamos em um executável empacotado com PyInstaller
-        return os.path.dirname(sys.executable)
-    else:
-        # Estamos executando um script Python normal
-        return os.path.dirname(__file__)
-
+from Função.Geral.AcharCaminhoExecutadoPyinstaller import acharCaminhoExecutado
 
 def importarNovasAbas(dataFrameSalas, dataFrameTubo, nomeSalas, nomeTubo):
 
 
     #Diretorio original e diretorio para salvar
-    caminhoExcel = os.path.normpath(os.path.join(os.path.dirname(sys.executable), 'Backup/Qualificacao.xlsx'))
-    caminhoSalvar = os.path.normpath(os.path.join(os.path.dirname(sys.executable), "Resultado"))
+    caminhoExcel = os.path.normpath(os.path.join(acharCaminhoExecutado('Backup/Qualificacao.xlsx')))
+    caminhoSalvar = os.path.normpath(os.path.join(acharCaminhoExecutado("Resultado")))
 
 
 

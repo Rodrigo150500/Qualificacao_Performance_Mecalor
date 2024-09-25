@@ -1,22 +1,13 @@
 import os
-import sys
 import openpyxl
 from openpyxl.drawing.image import Image
+from Função.Geral.AcharCaminhoExecutadoPyinstaller import acharCaminhoExecutado
 
-def get_executable_path():
-    """Obter o caminho do executável atual."""
-    if getattr(sys, 'frozen', False):
-        # Estamos em um executável empacotado com PyInstaller
-        return os.path.dirname(sys.executable)
-    else:
-        # Estamos executando um script Python normal
-        return os.path.dirname(__file__)
+
 
 def importarDados(dadosPadrao, dadosEquipamento, salaTecnica, salaExame, tuboFluxo, posicao, nome):
 
-
-
-    caminhoExcel = os.path.join(get_executable_path(),"Resultado/Qualificacao.xlsx")
+    caminhoExcel = os.path.join(acharCaminhoExecutado("Resultado/Qualificacao.xlsx"))
 
     workbook = openpyxl.load_workbook(caminhoExcel)
 
@@ -69,11 +60,11 @@ def importarDados(dadosPadrao, dadosEquipamento, salaTecnica, salaExame, tuboFlu
 
 
 
-        caminhoImagem = os.path.join(get_executable_path(), "Resultado/FotosGrafico", nome[i]+".png")
+        caminhoImagem = os.path.join(acharCaminhoExecutado("Resultado/FotosGrafico"), nome[i]+".png")
         img = Image(caminhoImagem)
         abaGrafico.add_image(img, posicao[i])
 
-    workbook.save(os.path.join(get_executable_path(),"Resultado/Qualificacao.xlsx"))
+    workbook.save(acharCaminhoExecutado("Resultado/Qualificacao.xlsx"))
 
 
 

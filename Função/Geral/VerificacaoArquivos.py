@@ -1,31 +1,14 @@
 from Função.Exception.Exception import ExceptionSimNao
+from Função.Geral.AcharCaminhoExecutadoPyinstaller import acharCaminhoExecutado
 import os
-import sys
+
+
+
 listaLog = []
 opcao = ['Sala Exames/Sala Técnica', 'Sala Exames', 'Sala Técnica', 'Sala Adicional', 'Tubo de Fluxo']
 
-
-def get_executable_path():
-    """Obter o caminho do executável atual."""
-    if getattr(sys, 'frozen', False):
-        # Estamos em um executável empacotado com PyInstaller
-        return os.path.dirname(sys.executable)
-    else:
-        # Estamos executando um script Python normal
-        return os.path.dirname(__file__)
-
-
-def verificarExecucaoPyinstaller():
-    if getattr(sys, 'frozen', False):
-        #Executando no Pyinstaller
-        return True
-    else:
-        #Executando na IDE
-        return False
-
 def verificarArquivos():
-
-    caminho = os.path.join(get_executable_path(), "Logs")
+    caminho = os.path.join(acharCaminhoExecutado("Logs"))
     arquivos = os.listdir(caminho)
 
 
@@ -55,7 +38,7 @@ def verificarArquivos():
                                                      "[4] - Sala Adicional\n" \
                                                      "[5] - Tubo de Fluxo\n"))
 
-                            if(tipoArquivo in [1, 2, 3, 4,5]):
+                            if(tipoArquivo in [1, 2, 3, 4, 5]):
                                 break
                             else:
                                 print("\nDigite Valores Válidos!!!\n")
@@ -66,7 +49,7 @@ def verificarArquivos():
                         "Input": tipoArquivo,
                         "Log": arquivo,
                         "Opcao": opcao[tipoArquivo - 1],
-                        "Diretorio": os.path.join(get_executable_path(),'Logs',arquivo)
+                        "Diretorio": os.path.join(acharCaminhoExecutado('Logs'), arquivo)
                     }
                     listaLog.append(temp)
 
@@ -94,6 +77,5 @@ def verificarArquivos():
     })
 
     return listaLog
-
 
 

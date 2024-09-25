@@ -1,5 +1,5 @@
 {
-  "logs": {
+  "verificaoArquivos": {
     "dev": "../../logs",
     "build": "logs"
   },
@@ -49,6 +49,5 @@
       "workbook": "Resultado/Qualificacao.xlsx"
     }
   }
-
 
 }

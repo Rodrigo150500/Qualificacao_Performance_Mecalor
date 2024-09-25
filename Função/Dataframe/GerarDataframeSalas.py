@@ -1,18 +1,8 @@
 import os
 import pandas as pd
-
-import sys
-
+from Função.Geral.AcharCaminhoExecutadoPyinstaller import acharCaminhoExecutado
 from Função.GerarColunas.GerarColunaDataHora import gerarColunaDataHora
 
-def get_executable_path():
-    """Obter o caminho do executável atual."""
-    if getattr(sys, 'frozen', False):
-        # Estamos em um executável empacotado com PyInstaller
-        return os.path.dirname(sys.executable)
-    else:
-        # Estamos executando um script Python normal
-        return os.path.dirname(__file__)
 
 def gerarDataframeSalas(salaTecnica, salaExames, diretorio, nome, datas):
 
@@ -54,7 +44,7 @@ def gerarDataframeSalas(salaTecnica, salaExames, diretorio, nome, datas):
 
     dataframeSalas = pd.DataFrame(data=dadosSalas)
 
-    salvarDir = os.path.normpath(os.path.join(get_executable_path(),"Resultado/LogsAtualizados",nome))
+    salvarDir = os.path.normpath(os.path.join(acharCaminhoExecutado("Resultado/LogsAtualizados"),nome))
 
     dataframeSalas.to_csv(salvarDir, index=False, sep=',', encoding="cp1252")
 

@@ -8,6 +8,7 @@ print("INICIANDO PROGRAMA")
 print('='*20)
 
 #Verificando os arquivos
+
 listaLog = verificarArquivos()
 
 #Definino caminho e seu tipo
