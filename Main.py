@@ -1,6 +1,7 @@
 from Função.Geral.VerificacaoArquivos \
     import verificarArquivos
 from Caminhos.CaminhoCompletoPadrao import caminhoCompletoPadrao
+from Caminhos.CaminhoResumidoPadrao import caminhoResumidoPadrao
 
 
 print('='*20)
@@ -18,12 +19,12 @@ listaLog = verificarArquivos()
 #1 - Padrão - 2 Personalizado
 ###
 if listaLog != False:
-    print("Caminho Completo Padrão\n")
-    caminhoCompletoPadrao(listaLog)
+    print("Caminho Resumido Padrão\n")
+    caminhoResumidoPadrao(listaLog)
 
 '''
     while True:
-        #Definindo o caminho se é COMPLETO ou RESUMIDO
+        #Definindo o caminho se é COMPLETO ou RESUMI1DO
         caminho = int(input("Digite se o caminho que o programa fará:\n"
                               "[1] - Completo\n"
                               "[2] - Resumido\n"))

@@ -1,5 +1,7 @@
 import os
 import pandas as pd
+
+from Função.Geral.AcharCaminhoExecutadoPyinstaller import acharCaminhoExecutado
 from Função.GerarColunas.GerarColunaDataHora import gerarColunaDataHora
 from Função.Exception.Exception import ExceptionSimNao
 import matplotlib.pyplot as plt
@@ -26,7 +28,7 @@ def verificarDatas(listaDatas, sala):
     return datas
 
 
-def gerarGrafico(dados, colunas, titulo):
+def gerarGrafico(dados, colunas, titulo, caminhoCompleto):
     dataFrames = pd.DataFrame(dados)
 
     df = dataFrames.plot(
@@ -62,11 +64,15 @@ def gerarGrafico(dados, colunas, titulo):
     intervalo_y = range(0, int(max(dataFrames[colunas].max()) + 5), 5)
     df.set_yticks(intervalo_y)
     df.set_xlim(0)
+    if(not caminhoCompleto):
+        print('foto salva')
+        plt.savefig(os.path.join(acharCaminhoExecutado('Resultado/FotosGrafico'),  f'{titulo}.png'),  bbox_inches='tight')
 
     plt.show()
 
 
-def graficoPreview(listaLog, numeroOpcao):
+
+def graficoPreview(listaLog, numeroOpcao, caminhoCompleto):
 
     #Diretorio dos logs
     logDiretorio = listaLog[-1]["DiretorioLogRaiz"]
@@ -124,10 +130,12 @@ def graficoPreview(listaLog, numeroOpcao):
 
 
                     #Gerando o gráfico, os dados é o log processado porém filtrado pelo nome das colunas
-                    gerarGrafico(dados, colunaTecnica, "Sala Técnica")
-                    gerarGrafico(dados, colunaExame, "Sala Exames")
+                    gerarGrafico(dados, colunaTecnica, "Sala Técnica", caminhoCompleto=caminhoCompleto)
+                    gerarGrafico(dados, colunaExame, "Sala Exames", caminhoCompleto = caminhoCompleto)
 
                     #Perguntando quais datas vão para o gráfico final
+                    if (not caminhoCompleto):
+                        return
                     datas = verificarDatas(listaDatas, "Sala Técnica/Exames")
                     return datas
 
@@ -164,9 +172,11 @@ def graficoPreview(listaLog, numeroOpcao):
 
                     #Gerando gráfico pegando os dados do log processado e filtrando com a coluna pertinente ao tubo
                     # de fluxo
-                    gerarGrafico(dados, colunas, titulo)
+                    gerarGrafico(dados, colunas, titulo, caminhoCompleto=caminhoCompleto)
 
                     #Perguntando quais datas vão estar no gráfico final do tubo de fluxo
+                    if(not caminhoCompleto):
+                        return
                     datas = verificarDatas(listaDatas, "Tubo de Fluxo")
                     return datas
 
