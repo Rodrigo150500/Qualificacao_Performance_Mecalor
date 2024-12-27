@@ -33,13 +33,14 @@ def caminhoCompletoPadrao(listaLog):
             dataSalas = graficoPreview(listaLog, opcao["Sala Exames/Sala Técnica"], caminhoCompleto=True)
             dataTuboFluxo = graficoPreview(listaLog, opcao["Tubo de Fluxo"], caminhoCompleto=True)
 
-            resposta = ExceptionSimNao("Deseja ver novamente:\n"
+            resposta = ExceptionSimNao("\nDeseja ver novamente:\n"
                                           "[1] - Sim\n"
                                           "[2] - Não\n")
 
             if resposta == 2:
                   break
         except Exception as exception:
+            print(exception)
             input("Verifique novamente a seleção escolhida para cada arquivo")
             return            
 
@@ -56,8 +57,7 @@ def caminhoCompletoPadrao(listaLog):
 
       print("\nDados do Equipamento\n")
       dadosEquipamentoCCP = dadosEquipamento()
-      equipamento = DadosEquipamento(equipamento=dadosEquipamentoCCP["Equipamento"],
-                                    fabricante=dadosEquipamentoCCP["Fabricante"],
+      equipamento = DadosEquipamento(fabricante=dadosEquipamentoCCP["Fabricante"],
                                     modelo=dadosEquipamentoCCP["Modelo"])
 
       #Sala de Exames

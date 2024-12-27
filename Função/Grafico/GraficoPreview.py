@@ -172,6 +172,17 @@ def graficoPreview(listaLog, numeroOpcao, caminhoCompleto):
                             colunas.append(coluna)
                     titulo = "Tubo de Fluxo"
 
+                    print('')
+                    print("="*40)
+                    print(f"Datas para Tubo de Fluxo")
+                    print("="*40)
+                    datas=''
+                    for data in listaDatas:
+                        datas += f"{data}, "
+                    print(datas)
+                    input("Essas são as datas, pressione ENTER para continuar...")
+
+
                     #Gerando gráfico pegando os dados do log processado e filtrando com a coluna pertinente ao tubo
                     # de fluxo
                     gerarGrafico(dados, colunas, titulo, caminhoCompleto=caminhoCompleto)

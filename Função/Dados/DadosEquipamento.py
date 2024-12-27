@@ -3,11 +3,10 @@ def dadosEquipamento():
     while True:
 
         while True:
-            equipamento = input("Digite o nome do equipamento: ").upper()
             fabricante = input("Digite o nome do fabricante: ").upper()
             modelo = input("Digite o nome do modelo: ").upper()
 
-            if ((equipamento != "") and (fabricante != "") and (modelo != "")):
+            if ((fabricante != "") and (modelo != "")):
                 break
             else:
                 print("\nPreencha todos os campos!!!\n")
@@ -15,7 +14,6 @@ def dadosEquipamento():
         print(f"\n======================\n"
               f"Dados do Equipamento\n"
               f"======================\n"
-              f"Equipamento: {equipamento}\n"
               f"Fabricante: {fabricante}\n"
               f"Modelo: {modelo}\n")
 
@@ -27,7 +25,6 @@ def dadosEquipamento():
             break
 
     dados = {
-        "Equipamento": equipamento,
         "Fabricante": fabricante,
         "Modelo": modelo
     }
