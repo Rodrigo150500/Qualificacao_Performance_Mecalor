@@ -4,7 +4,7 @@ from Função.Geral.AcharCaminhoExecutadoPyinstaller import acharCaminhoExecutad
 from Função.GerarColunas.GerarColunaDataHora import gerarColunaDataHora
 
 
-def gerarDataframeSalas(salaTecnica, salaExames, diretorio, nome, datas):
+def gerarDataframeSalas(salaTecnica, salaExames, diretorio, nome, datas, arquivoTXT=False):
 
     logSalas = pd.read_csv(diretorio,sep=',')
 
@@ -42,13 +42,34 @@ def gerarDataframeSalas(salaTecnica, salaExames, diretorio, nome, datas):
         elif "Exame" in coluna:
             colunasExame.append(coluna)
 
-    dataframeSalas = pd.DataFrame(data=dadosSalas)
+    if not arquivoTXT:
 
-    salvarDir = os.path.normpath(os.path.join(acharCaminhoExecutado("Resultado/LogsAtualizados"),nome))
+        dataframeSalas = pd.DataFrame(data=dadosSalas)
 
-    dataframeSalas.to_csv(salvarDir, index=False, sep=',', encoding="cp1252")
+        salvarDir = os.path.normpath(os.path.join(acharCaminhoExecutado("Resultado/LogsAtualizados"),nome))
 
-    dataframeSalasGrafico = dataframeSalas[dataframeSalas["Data"].isin(datas)].reset_index(drop=True)
+        dataframeSalas.to_csv(salvarDir, index=False, sep=',', encoding="cp1252")
 
-    return dataframeSalas, colunasEquip, colunasExame, dataframeSalasGrafico
+        dataframeSalasGrafico = dataframeSalas[dataframeSalas["Data"].isin(datas)].reset_index(drop=True)
+
+        return dataframeSalas, colunasEquip, colunasExame, dataframeSalasGrafico
+    else:
+        # Criando o DataFrame a partir do dicionário
+        dataframeSalas = pd.DataFrame(data=dadosSalas)
+
+        # Substituindo pontos por vírgulas nas colunas específicas
+        colunas_substituir = ["Temp Equip (°C)", "Umd Equip (%)", "Temp Exame (°C)", "Umd Exame (%)"]
+        dataframeSalas[colunas_substituir] = dataframeSalas[colunas_substituir].astype(str).apply(lambda x: x.str.replace('.', ','))
+
+        # Definindo o diretório para salvar o arquivo
+        salvarDir = os.path.normpath(os.path.join(acharCaminhoExecutado("Resultado/LogsAtualizados"), nome))
+
+        # Salvando o DataFrame como arquivo .csv com ";" como separador
+        dataframeSalas.to_csv(salvarDir, index=False, sep=';', encoding="cp1252")
+
+        # Filtrando os dados para gerar o gráfico
+        dataframeSalasGrafico = dataframeSalas[dataframeSalas["Data"].isin(datas)].reset_index(drop=True)
+
+        return
+
 

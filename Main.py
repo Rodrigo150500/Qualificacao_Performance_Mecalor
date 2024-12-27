@@ -9,7 +9,6 @@ print("INICIANDO PROGRAMA")
 print('='*20)
 
 #Verificando os arquivos
-
 listaLog = verificarArquivos()
 
 #Definino caminho e seu tipo
@@ -20,7 +19,9 @@ listaLog = verificarArquivos()
 ###
 if listaLog != False:
     print("Caminho Completo Padrão\n")
+
     caminhoCompletoPadrao(listaLog)
+
 
 '''
     while True:

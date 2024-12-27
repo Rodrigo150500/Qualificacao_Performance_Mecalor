@@ -33,12 +33,12 @@ def verificarArquivos():
                         print(f'\nQue tipo de arquivo é {arquivo}?\n')
                         try:
                             tipoArquivo = int(input( "[1] - Sala Exames/Sala Técnica\n" \
-                                                     "[2] - Sala Exame   \n" \
-                                                     "[3] - Sala Técnica\n" \
-                                                     "[4] - Sala Adicional\n" \
+                                                     #"[2] - Sala Exame   \n" \
+                                                     #"[3] - Sala Técnica\n" \
+                                                     #"[4] - Sala Adicional\n" \
                                                      "[5] - Tubo de Fluxo\n"))
 
-                            if(tipoArquivo in [1, 2, 3, 4, 5]):
+                            if(tipoArquivo in [1, 5]):
                                 break
                             else:
                                 print("\nDigite Valores Válidos!!!\n")

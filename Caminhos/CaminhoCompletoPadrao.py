@@ -29,15 +29,20 @@ def caminhoCompletoPadrao(listaLog):
 
     #Mostrando uma preview do grafico sem os limites
     while True:
-        dataSalas = graficoPreview(listaLog, opcao["Sala Exames/Sala Técnica"], caminhoCompleto=True)
-        dataTuboFluxo = graficoPreview(listaLog, opcao["Tubo de Fluxo"], caminhoCompleto=True)
+        try:
+            dataSalas = graficoPreview(listaLog, opcao["Sala Exames/Sala Técnica"], caminhoCompleto=True)
+            dataTuboFluxo = graficoPreview(listaLog, opcao["Tubo de Fluxo"], caminhoCompleto=True)
 
-        resposta = ExceptionSimNao("Deseja ver novamente:\n"
-                                     "[1] - Sim\n"
-                                     "[2] - Não\n")
+            resposta = ExceptionSimNao("Deseja ver novamente:\n"
+                                          "[1] - Sim\n"
+                                          "[2] - Não\n")
 
-        if resposta == 2:
-            break
+            if resposta == 2:
+                  break
+        except Exception as exception:
+            input("Verifique novamente a seleção escolhida para cada arquivo")
+            return            
+
 
     continuar = 1
 
@@ -163,6 +168,19 @@ def caminhoCompletoPadrao(listaLog):
                   nomeImg=nomeTuboFluxo,
                   titulo=nomeTuboFluxo,
                   )
+      
+
+            #Criando uma aba para as salas de Exame e Técnica
+      gerarDataframeSalas(salaTecnica=salaTecnica,
+                                                                        salaExames=salaExame,
+                                                                  diretorio=diretorioSalas,
+                                                                  nome=nomeSalasArquivo, datas = dataSalas, arquivoTXT=True)
+
+      #Criando uma aba para o tubo de fluxo
+      gerarDataframeTuboFluxo(tubofluxo=tuboFluxo,
+                                                                  diretorio=diretorioTuboFluxo,
+                                                            nome=nomeTuboFluxoArquivo, datas = dataTuboFluxo, arquivoTxt=True )
+      
       print(f"{'='*20}\n"
             f"PROGRESSO 80%\n"
             f"{'='*20}\n"

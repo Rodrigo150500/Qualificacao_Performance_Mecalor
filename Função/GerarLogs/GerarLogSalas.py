@@ -3,7 +3,6 @@ import pandas as pd
 from Função.GerarColunas.GerarColunaDataHora import gerarColunaDataHora
 from Função.GerarColunas.GerarColunaSalaTecnica import gerarColunaSalaTecnica
 from Função.GerarColunas.GerarColunaSalaExame import gerarColunaSalaExame
-
 def gerarLogSalas(salaExames, salaTecnica, diretorio, nome):
     dados = pd.read_csv(diretorio, sep=',')
 
@@ -53,3 +52,4 @@ def gerarLogSalas(salaExames, salaTecnica, diretorio, nome):
     nomeLog = os.path.join(caminho, nome)
 
     dados.to_csv(nomeLog, index=False, sep=';', encoding="cp1252")
+

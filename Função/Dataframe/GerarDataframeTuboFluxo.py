@@ -7,7 +7,7 @@ from Função.Geral.AcharCaminhoExecutadoPyinstaller import acharCaminhoExecutad
 
 
 
-def gerarDataframeTuboFluxo(tubofluxo, diretorio, nome, datas):
+def gerarDataframeTuboFluxo(tubofluxo, diretorio, nome, datas, arquivoTxt = False):
 
     logTubo = pd.read_csv(diretorio, sep=',')
 
@@ -31,13 +31,28 @@ def gerarDataframeTuboFluxo(tubofluxo, diretorio, nome, datas):
     for coluna in dadosTubo:
         if coluna != "Data" and coluna != "Hora":
             colunas.append(coluna)
-    dataFrameTubo = pd.DataFrame(data=dadosTubo)
 
-    salvarDir = os.path.normpath(os.path.join(acharCaminhoExecutado("Resultado/LogsAtualizados"),nome))
+    if not arquivoTxt:
+        dataFrameTubo = pd.DataFrame(data=dadosTubo)
 
-    dataFrameTubo.to_csv(salvarDir,index=False, sep=',', encoding="cp1252")
+        salvarDir = os.path.normpath(os.path.join(acharCaminhoExecutado("Resultado/LogsAtualizados"),nome))
 
-    dataFrameTuboGrafico = dataFrameTubo[dataFrameTubo["Data"].isin(datas)].reset_index(drop=True)
+        dataFrameTubo.to_csv(salvarDir,index=False, sep=',', encoding="cp1252")
+
+        dataFrameTuboGrafico = dataFrameTubo[dataFrameTubo["Data"].isin(datas)].reset_index(drop=True)
 
 
-    return dataFrameTubo, colunas, dataFrameTuboGrafico
+        return dataFrameTubo, colunas, dataFrameTuboGrafico
+    else:
+        dataFrameTubo = pd.DataFrame(data=dadosTubo)
+        salvarDir = os.path.normpath(os.path.join(acharCaminhoExecutado("Resultado/LogsAtualizados"),nome))
+        
+        colunas_substituir = ["TempAG (°C)", "Vazão Alim (l/min)"]
+        dataFrameTubo[colunas_substituir] = dataFrameTubo[colunas_substituir].astype(str).apply(lambda x: x.str.replace('.', ','))
+
+        dataFrameTubo.to_csv(salvarDir,index=False, sep=';', encoding="cp1252")
+
+        dataFrameTuboGrafico = dataFrameTubo[dataFrameTubo["Data"].isin(datas)].reset_index(drop=True)
+
+        return
+
