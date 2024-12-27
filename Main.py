@@ -19,8 +19,8 @@ listaLog = verificarArquivos()
 #1 - Padrão - 2 Personalizado
 ###
 if listaLog != False:
-    print("Caminho Resumido Padrão\n")
-    caminhoResumidoPadrao(listaLog)
+    print("Caminho Completo Padrão\n")
+    caminhoCompletoPadrao(listaLog)
 
 '''
     while True:

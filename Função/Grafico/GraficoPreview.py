@@ -136,7 +136,9 @@ def graficoPreview(listaLog, numeroOpcao, caminhoCompleto):
                     #Perguntando quais datas vão para o gráfico final
                     if (not caminhoCompleto):
                         return
-                    datas = verificarDatas(listaDatas, "Sala Técnica/Exames")
+                    
+                    datas = listaDatas
+                    #datas = verificarDatas(listaDatas, "Sala Técnica/Exames")
                     return datas
 
 
@@ -177,7 +179,9 @@ def graficoPreview(listaLog, numeroOpcao, caminhoCompleto):
                     #Perguntando quais datas vão estar no gráfico final do tubo de fluxo
                     if(not caminhoCompleto):
                         return
-                    datas = verificarDatas(listaDatas, "Tubo de Fluxo")
+                    
+                    datas = listaDatas
+                    #datas = verificarDatas(listaDatas, "Tubo de Fluxo")
                     return datas
 
 
